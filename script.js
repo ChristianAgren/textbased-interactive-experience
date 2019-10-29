@@ -10,8 +10,14 @@ function inputUserAction(e) {
 
         let userAction = document.querySelector('input'),
         userActionInput = userAction.value
-        
-        console.log(userActionInput)
+
+        if (userActionInput === 'instructions') {
+            console.log('Show help commands')
+        }
+
+        else if (userActionInput === 'help') {
+            userActionInput += " - Can't help you right now..."
+        }
         
         userAction.value = ""
         
