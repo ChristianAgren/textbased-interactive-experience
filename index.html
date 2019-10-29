@@ -5,24 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
     <script defer src="script.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h2>Action history:</h2>
-        <ul id="user-action-list">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-    <div>
-        <label for="actions">Actions:</label>
-        <input type="text" name="actions" size="20" placeholder="Type user action here">
-        <button class="enter-actions" type="button">Enter</button>
+    <div class="grid-container">
+        <div class="header">
+            <p>lite info</p>
+        </div>
+        <div class="main">
+            <p>
+                lite info
+            </p>
+        </div>
+        <div class="action">
+            <div>
+                <h3>Action history:</h3>
+                <ul id="user-action-list">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div>
+                <input type="text" name="actions" size="20" placeholder="Type user action here">
+                <button class="enter-actions" type="button">Enter</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

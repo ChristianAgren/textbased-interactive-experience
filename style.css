@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #111112;
+    --secondary-color: #eeeeee; 
+}
+
+body {
+    font-family: 'Noto Serif', serif;
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "header header header header"
+    "main main main main"
+    "main main main main"
+    ". action action ."
+}
+
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+}
+
+.action {
+    grid-area: action;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
