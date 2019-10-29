@@ -15,10 +15,40 @@ body {
     color: var(--secondary-color);
 }
 
+ul {
+    list-style-type: none;
+    margin: 0 0 1rem 0;
+}
+
+ul li {
+    width: 100%;
+}
+
+ul li::before {
+    content: '[ ';
+}
+ul li::after {
+    content: ' ]';
+}
+
+button, input {
+    font-family: inherit;
+    font-size: 100%;
+
+    width: 100%;
+    max-width: 40rem;
+    min-width: 1rem;
+    border: none;
+}
+
+button {
+    margin: .5rem auto; 
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: .9fr .9fr .9fr 1fr;
     grid-template-areas:
     "header header header header"
     "main main main main"
@@ -38,8 +68,30 @@ body {
     grid-area: action;
 
     width: 100%;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.action > div {
+    margin: 1rem 0 1rem 0;
+    width: 94%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action div > div {
+    width: 100%;
+}
+
+.user-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
