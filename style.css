@@ -50,6 +50,7 @@ button, input {
 
 input {
     width: 80%;
+    background-color: var(--secondary-color);
 }
 
 button {
@@ -81,7 +82,6 @@ button {
     height: 100vh;
     background-color: var(--primary-color-alpha);
 
-    display: none;
     grid-template-columns: 1rem 1fr 1rem;
     grid-template-areas: 
     ". instructions ."
