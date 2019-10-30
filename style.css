@@ -134,4 +134,5 @@ button {
 
 .locations ul li {
     margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
 }
