@@ -1,4 +1,7 @@
-const inputButton = document.querySelector('button')
+const   inputButton = document.querySelector('button'),
+        player = {
+            location: "basement"
+        };
 
 /**
  * Reads users action input
@@ -9,14 +12,40 @@ function inputUserAction(e) {
     if (e.charCode === 13 || e.type === 'click') {
 
         let userAction = document.querySelector('input'),
-        userActionInput = userAction.value
+            userActionInput = userAction.value,
+            noSpaceString = userActionInput.replace(/\s/g, '');
 
-        if (userActionInput === 'instructions') {
-            console.log('Show help commands')
+        if (noSpaceString === 'instructions') {
+            userActionInput += " - Showing instructions"
         }
-
-        else if (userActionInput === 'help') {
+        
+        else if (noSpaceString === 'help') {
             userActionInput += " - Can't help you right now..."
+        }
+        
+        else if (noSpaceString === 'goto') {
+            userActionInput += ' - Type "goto" and where you want to go. Locations are to the right.' 
+        }
+        
+        else if (noSpaceString === 'gotolivingroom') {
+            updateLocation('living room') 
+            userActionInput += ' - You went to the ' + player.location 
+        }
+        
+        else if (noSpaceString === 'gotolibrary') {
+            userActionInput += ' - You went to the library.' 
+        }
+        
+        else if (noSpaceString === 'gotoattic') {
+            userActionInput += ' - You went to the attic.' 
+        }
+        
+        else if (noSpaceString === 'gotobasement') {
+            userActionInput += ' - You went to the basement.' 
+        }
+        
+        else {
+            userActionInput = 'Invalid input'
         }
         
         userAction.value = ""
@@ -46,6 +75,13 @@ function updateListElements(assignedAction) {
         getActionsList[i].innerText = buildActionArray[i]
     }
 }
+
+function updateLocation(location) {
+    player.location = location
+    console.log(location);
+    
+}
+
 
 // Eventlisteners
 
