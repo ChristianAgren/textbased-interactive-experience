@@ -1,16 +1,16 @@
-Rum 1 - vardagsrummet
+Rum 1 - livingroom
 	föremål 1 - (krävs för ledtråd 1)
 	ledtråd 2
 
-Rum 2 - hallen
+Rum 2 - library
 	föremål 2 - (krävs för ledtråd 2)
 	ledtråd 3
 
-Rum 3 - vinden
+Rum 3 - attic
 	ledtråd 1
 	föremål 3 - (krävs för ledtråd 3)	
 
-Rum 4 - källaren - rummet du börjar i
+Rum 4 - basement - rummet du börjar i
 	kista - kombination
 		[ledtråd 2, ledtråd 3, ledtråd 1]
 
