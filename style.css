@@ -14,15 +14,20 @@ body {
     font-size: 1.2rem;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+
+    display: flex;
+    justify-content: center;
 }
 
 ul {
     list-style-type: none;
-    margin: 0 0 1rem 0;
+    margin: 0 0 .2rem 0;
 }
 
 ul li {
-    width: 100%;
+    margin-top: .4rem;
+
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 ul li::before {
@@ -36,7 +41,6 @@ button, input {
     font-family: inherit;
     font-size: 100%;
     
-    max-width: 40rem;
     min-width: 1rem;
     border: none;
 }
@@ -47,7 +51,10 @@ input {
 
 button {
     margin: 0rem 0 0 .5rem; 
+    
     width: 20%;
+    height: 1.7rem;
+    border-radius: .5rem;
 }
 
 .flex-column-center {
@@ -65,16 +72,36 @@ button {
 
 .grid-container {
     
-    width: 100%;
+    width: 98%;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: .2fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr .2fr;
     grid-template-areas:
     "header header header header"
     "main main main main"
-    "main main main main"
-    ". action action ."
+    "commands action action locations"
+    "commands input input locations"
+}
+
+.grid-item {
+    justify-self: center;
+    margin: .5rem 1rem 0 1rem;
+    
+    width: 98%;
+    border-radius: .4rem;
+    box-shadow: .6rem .6rem .6rem black;
+    background-color: var(--secondary-color);
+    color: var(--primary-color)
+}
+
+.grid-item > div {
+    margin: 1rem 0 1rem 0;
+    width: 94%;
+}
+
+.grid-item div > div {
+    width: 100%;
 }
 
 .header {
@@ -87,17 +114,24 @@ button {
 
 .action {
     grid-area: action;
-
-    width: 100%;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    z-index: 1;
 }
 
-.action > div {
-    margin: 1rem 0 1rem 0;
-    width: 94%;
+.user-input {
+    grid-area: input;
+    z-index: 1;
 }
 
-.action div > div {
-    width: 100%;
+.commands {
+    grid-area: commands;
+}
+
+.locations {
+    grid-area: locations;
+    z-index: 2;
+    position: relative;
+}
+
+.locations ul li {
+    margin-top: 1rem;
 }
