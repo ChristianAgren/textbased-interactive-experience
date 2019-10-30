@@ -5,11 +5,14 @@
 
 :root {
     --primary-color: #111112;
+    --primary-color-alpha: #111112E5;
     --secondary-color: #eeeeee; 
 }
 
 
 body {
+    position: relative;
+
     font-family: 'Noto Serif', serif;
     font-size: 1.2rem;
     background-color: var(--primary-color);
@@ -70,16 +73,31 @@ button {
     align-items: center;
 }
 
+.instructions-grid {
+    z-index: 3;
+    position: absolute;
+
+    width: 100%;
+    height: 100vh;
+    background-color: var(--primary-color-alpha);
+
+    display: none;
+    grid-template-columns: 1rem 1fr 1rem;
+    grid-template-areas: 
+    ". instructions ."
+    ;
+}
+
 .grid-container {
     
     width: 98%;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr .2fr;
+    grid-template-rows: 1fr 1.1fr 1fr .2fr;
     grid-template-areas:
-    "header header header header"
-    "main main main main"
+    "header header header inventory"
+    "main main main inventory"
     "commands action action locations"
     "commands input input locations"
 }
@@ -104,12 +122,21 @@ button {
     width: 100%;
 }
 
+.instructions {
+    grid-area: instructions;
+    height: 89%;
+}
+
 .header {
     grid-area: header;
 }
 
 .main {
     grid-area: main;
+}
+
+.inventory {
+    grid-area: inventory;
 }
 
 .action {
@@ -119,7 +146,8 @@ button {
 
 .user-input {
     grid-area: input;
-    z-index: 1;
+    z-index: 3;
+    border: 1px solid black;
 }
 
 .commands {
@@ -135,4 +163,9 @@ button {
 .locations ul li {
     margin-top: 1rem;
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+.locations ul li:last-child {
+    background-color: var(--primary-color-alpha);
+    color: var(--secondary-color);
 }

@@ -17,13 +17,29 @@ function parseUserInput(e) {
             noSpaceString = userActionInput.replace(/\s/g, '').toLowerCase(),
             checkFirstFourLetters = noSpaceString.substring(0, 4),
             checkStringEnding = noSpaceString.substring(4);
+            getInstructions = document.querySelector('.instructions-grid')
 
         if (noSpaceString === 'instructions') {
-            userActionInput += " - Showing instructions"
+            if (getInstructions.style.display === 'grid') {
+                userActionInput += " - Closing instructions..."
+                getInstructions.style.display = 'none'
+            }
+            else {
+                userActionInput += " - Showing instructions..."
+                getInstructions.style.display = 'grid'
+            }
+        }
+        
+        else if (noSpaceString === 'location') {
+            userActionInput += " - You can find the locations to the right."
         }
         
         else if (noSpaceString === 'help') {
             userActionInput += " - Can't help you right now..."
+        }
+        
+        else if (noSpaceString === 'exit') {
+            userActionInput += " - Thought it would be that easy, did you?"
         }
         
         else if (checkFirstFourLetters === 'goto') {
@@ -63,10 +79,6 @@ function parseUserInput(e) {
     }
 }
 
-function movePlayerLocation(noSpaceString, checkFirstFourLetters) {
-    return userinput
-}
-
 /**
  * Function for managing action history
  * @param {string} assignedAction User inputs assigned action
@@ -89,22 +101,23 @@ function updateListElements(assignedAction) {
 
 /**
  * Manages player location and updates it based on input
- * @param {string} location 
+ * @param {string} location String based off users input
  */
 function updateLocation(location) {
     const   oldLocation = document.querySelector('.'+player.location),
             newLocation = document.querySelector('.'+location);
 
     oldLocation.innerText = capitilizeFirstLetter(player.location)
-    oldLocation.style.backgroundColor = ''
-    oldLocation.style.color = ''
+    oldLocation.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'
+    oldLocation.style.color = 'var(--primary-color)'
     
     newLocation.innerText = capitilizeFirstLetter(location) + ' - You are here'
     newLocation.style.backgroundColor = '#111112E5'
     newLocation.style.color = 'var(--secondary-color)'
     
     player.location = location
-    
+
+    console.log(player.location);  
 }
 
 /**
@@ -114,6 +127,7 @@ function updateLocation(location) {
 function capitilizeFirstLetter(string) {
    return string.charAt(0).toUpperCase() + string.slice(1)
 }
+
 
 
 // Eventlisteners
