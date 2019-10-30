@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="script.js"></script>
     <title>Document</title>
 </head>
@@ -19,8 +20,8 @@
                 lite info
             </p>
         </div>
-        <div class="action">
-            <div>
+        <div class="action flex-column-center">
+            <div class="flex-column-center">
                 <div>
                     <h3>Action history:</h3>
                     <ul id="user-action-list">
@@ -31,9 +32,9 @@
                         <li></li>
                     </ul>
                 </div>
-                <div class="user-input">
+                <div class="user-input flex-row-center">
                     <input type="text" name="actions" size="60" placeholder="Type user action here">
-                    <button class="enter-actions" type="button">></button>
+                    <button class="enter-actions flex-column-center" type="button"><i class="material-icons">keyboard_return</i></button>
                 </div>
             </div>
         </div>
