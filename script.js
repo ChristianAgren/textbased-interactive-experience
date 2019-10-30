@@ -63,13 +63,13 @@ function parseUserInput(e) {
                     userActionInput += ' - You went to the ' + player.location 
                 }
                 else {
-                    userActionInput += " - That's not a location..."
+                    userActionInput += " - Invalid location..."
                 }
             }
         }
         
         else {
-            userActionInput = 'Invalid input'
+            userActionInput += ' - Invalid input...'
         }
         
         userAction.value = ""
