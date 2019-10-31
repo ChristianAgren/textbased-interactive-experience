@@ -5,7 +5,7 @@
 
 :root {
     --primary-color: #29292b;
-    --primary-color-alpha: #111112E5;
+    --primary-color-alpha: rgba(17, 17, 18, 0.5);
     --secondary-color: #eeeeee; 
 }
 
@@ -24,6 +24,10 @@ body {
     align-items: center;
 }
 
+h1 {
+    margin-bottom: 2rem;
+}
+
 h3 {
     padding-bottom: 1rem;
 }
@@ -34,7 +38,7 @@ ul {
 }
 
 ul li {
-    margin-top: .4rem;
+    margin: .4rem 1rem 0 0;
 
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -73,6 +77,12 @@ button {
     align-items: center;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .flex-row-center {
     display: flex;
     flex-direction: row;
@@ -104,40 +114,53 @@ button {
     grid-template-rows: 1fr .1fr .5fr .1fr;
     grid-row-gap: .5rem;
     grid-template-areas:
-    "header header header . inventory"
-    ". . . . inventory"
+    ". . description . inventory"
+    ". . description . inventory"
     "commands . action . locations"
     "commands . input . locations"
 }
 
 .inventory-grid-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: .8fr 2.5fr;
     grid-template-rows: auto;
     grid-column-gap: .3rem;
+    grid-row-gap: .6rem;
     grid-template-areas:
-    "axeimg axedesc dummyimg dummydesc "
+    "axeimg axedesc" 
+    "dummyimg dummydesc"
 }
 
 .grid-item {
     justify-self: center;
     width: 100%;
     border-radius: .4rem;
-    box-shadow: .6rem .6rem .6rem black;
+    box-shadow: .3rem .3rem .3rem black;
     background-color: var(--secondary-color);
     color: var(--primary-color)
 }
 
 .inv-img {
-    height: 4rem; 
-    width: 4rem; 
+    height: 5rem; 
+    width: 5rem; 
     border-radius: .4rem;
     background-color: var(--primary-color);
-    box-shadow: inset .6rem .6rem .6rem black;
+    box-shadow: inset .4rem .4rem .3rem black;
 }
 
-.inv-desc h3, p {
-    font-size: .9rem;
+.inv-desc h4, .inv-desc p {
+    margin-top: .4rem;
+    
+    font-size: 1.2rem;
+    background-color: var(--primary-color-alpha);
+}
+
+.inv-desc h4 {
+    width: 80%;
+}
+
+.inv-desc p {
+    width: 100%;
 }
 
 .grid-item > div {
@@ -151,15 +174,29 @@ button {
 
 .instructions {
     grid-area: instructions;
-    height: 89%;
+    margin-top: 1rem;
+
+    height: 90%;
 }
 
-.header {
-    grid-area: header;
+.description {
+    grid-area: description;
+    text-align: center;
+    text-shadow: .3rem .3rem .3rem black;
 }
 
-.main {
-    grid-area: main;
+.room-description p {
+    width: 100%;
+    text-align: start;
+    font-size: 1.2rem;
+}
+
+.room-items {
+    margin: 2rem;
+}
+
+.inventory {
+    grid-area: inventory;
 }
 
 .axe-img {
@@ -173,10 +210,6 @@ button {
 }
 .dummy-desc {
     grid-area: dummydesc;
-}
-
-.inventory {
-    grid-area: inventory;
 }
 
 .action {
@@ -203,9 +236,4 @@ button {
 .locations ul li {
     margin-top: 1rem;
     background-color: rgba(255, 255, 255, 0.2);
-}
-
-.locations ul li:last-child {
-    background-color: var(--primary-color-alpha);
-    color: var(--secondary-color);
 }
