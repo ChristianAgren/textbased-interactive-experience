@@ -4,7 +4,7 @@
 }
 
 :root {
-    --primary-color: #111112;
+    --primary-color: #29292b;
     --primary-color-alpha: #111112E5;
     --secondary-color: #eeeeee; 
 }
@@ -12,6 +12,7 @@
 
 body {
     position: relative;
+    height: 100vh;
 
     font-family: 'Noto Serif', serif;
     font-size: 1.2rem;
@@ -20,6 +21,11 @@ body {
 
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    padding-bottom: 1rem;
 }
 
 ul {
@@ -90,27 +96,48 @@ button {
 
 .grid-container {
     
-    width: 98%;
+    width: 99vw;
+    height: 99vh;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1.1fr 1fr .2fr;
+    grid-template-columns: .6fr .5rem 1.2fr .5rem .6fr;
+    grid-template-rows: 1fr .1fr .5fr .1fr;
+    grid-row-gap: .5rem;
     grid-template-areas:
-    "header header header inventory"
-    "main main main inventory"
-    "commands action action locations"
-    "commands input input locations"
+    "header header header . inventory"
+    ". . . . inventory"
+    "commands . action . locations"
+    "commands . input . locations"
+}
+
+.inventory-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    grid-column-gap: .3rem;
+    grid-template-areas:
+    "axeimg axedesc dummyimg dummydesc "
 }
 
 .grid-item {
     justify-self: center;
-    margin: .5rem 1rem 0 1rem;
-    
-    width: 98%;
+    width: 100%;
     border-radius: .4rem;
     box-shadow: .6rem .6rem .6rem black;
     background-color: var(--secondary-color);
     color: var(--primary-color)
+}
+
+.inv-img {
+    height: 4rem; 
+    width: 4rem; 
+    border-radius: .4rem;
+    background-color: var(--primary-color);
+    box-shadow: inset .6rem .6rem .6rem black;
+}
+
+.inv-desc h3, p {
+    font-size: .9rem;
 }
 
 .grid-item > div {
@@ -118,7 +145,7 @@ button {
     width: 94%;
 }
 
-.grid-item div > div {
+.grid-item:not(.inventory) > div > div {
     width: 100%;
 }
 
@@ -133,6 +160,19 @@ button {
 
 .main {
     grid-area: main;
+}
+
+.axe-img {
+    grid-area: axeimg;
+}
+.dummy-img {
+    grid-area: dummyimg;
+}
+.axe-desc {
+    grid-area: axedesc;
+}
+.dummy-desc {
+    grid-area: dummydesc;
 }
 
 .inventory {

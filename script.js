@@ -1,8 +1,18 @@
 const   inputButton = document.querySelector('button'),
         player = {
             location: "basement",
-            acceptedLocations: ['attic', 'library', 'livingroom', 'basement']
+            acceptedLocations: ['attic', 'library', 'livingroom', 'basement'],
+            inventory: {
+                axe: {
+                    img: 'gonna-be-an-img-here-soon',
+                    name: 'An axe',
+                    description: 'Useful in sticky situations',
+                    isFound: false,
+                }
+            }
         };
+
+console.log(player.inventory.axe.isFound);
 
 /**
  * Reads users action input and outputs accordingly
