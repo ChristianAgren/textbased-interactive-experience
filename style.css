@@ -195,6 +195,11 @@ button {
     margin: 2rem;
 }
 
+.room-items li {
+    font-size: 2rem;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
 .inventory {
     grid-area: inventory;
 }
