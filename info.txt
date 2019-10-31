@@ -24,3 +24,11 @@ Användarens val:
 
 Inspektera - 	Få mer information om ett objekt i ett rum
 		Få fler val som går att utföra med objektet
+
+
+todo:
+- Användaren ska kunna interagera med objekten.
+    - INTE något som inte finns i rummet som användaren befinner sig i.
+- kommandon:
+    - look - få ut en beskrivning av det objekt som man tittar på
+    - take - ta med sig ett item
