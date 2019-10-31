@@ -23,11 +23,19 @@ const   inputButton = document.querySelector('button'),
                 }
             }
         };
+        
 let     getRoomItems = document.querySelectorAll('#room-item-list li'),
-        currentLocation = player.location;
+        currentLocation = player.location[0];
 
-console.log(player.inventory.axe.isFound)
-console.log(currentLocation[0].items.length)
+/**Loads items into the interface
+ * 
+ */
+function loadItems() {
+    currentLocation = player.location[0];
+    for(i=0 ; i < currentLocation.items.length ; i++) {
+        getRoomItems[i].innerText = currentLocation.items[i]
+    }
+}
 
 /**
  * Reads users action input and outputs accordingly
@@ -141,6 +149,7 @@ function updateLocationGraphic(location) {
     newLocation.style.color = 'var(--secondary-color)'
 
     updateLocationLogic(location)
+    loadItems()
 }
 
 /**
@@ -171,12 +180,10 @@ function capitilizeFirstLetter(string) {
    return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-function loadItems() {
-}
-
 
 
 // Eventlisteners
 
 inputButton.addEventListener('click', parseUserInput)
 window.addEventListener('keypress', parseUserInput)
+document.addEventListener('DOMContentLoaded', loadItems);
