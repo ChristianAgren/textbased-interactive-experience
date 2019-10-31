@@ -115,7 +115,7 @@ button {
     grid-row-gap: .5rem;
     grid-template-areas:
     ". . description . inventory"
-    ". . description . inventory"
+    "commands . description . inventory"
     "commands . action . locations"
     "commands . input . locations"
 }
