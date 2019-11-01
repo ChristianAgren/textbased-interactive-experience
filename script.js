@@ -1,29 +1,80 @@
 const   inputButton = document.querySelector('button'),
         basement = {
-            items: ['drawer', 'axe', 'chest', 'door']
+            items: ['heater', 'axe', 'chest', 'door'],
+            heater: {
+                description: "If this was on it might've been a little warmer in here..."
+            },
+            axe: {
+                description: 'Useful in a sticky situation'
+            },
+            chest: {
+                description: 'This looks VERY important'
+            },
+            door: {
+                description: 'Seems locked... I wonder if something here could help me...'
+            }
+            
         },
         livingroom = {
-            items: ['something', 'something', 'something', 'something']
+            items: ['table', 'painting', 'drawer', 'ceiling'],
+            table: {
+                description: "An empty table, not of much use"
+            },
+            painting: {
+                description: "Of an old woman. She looks... happy? Does she want me to come closer?"
+            },
+            drawer: {
+                description: 'Looks like a rugged old drawer...'
+            },
+            couch: {
+                description: "This couch has seen better days"
+            },
         },
         library = {
-            items: ['this', 'is', 'library', '!!']
+            items: ['book', 'bookshelf', 'globe', 'typewriter'],
+            book: {
+                description: "An open book, lying on a table. Don't have time for reading..."
+            },
+            bookshelf: {
+                description: "So many books, where would I start?"
+            },
+            globe: {
+                description: "A globe of the world. Seems like it's round after all!"
+            },
+            typewriter: {
+                description: "Someone's been writing something here, a paper is stuck in the mechanism"
+            },
+
         },
         attic = {
-            items: ['this', 'be', 'the', 'attic']
+            items: ['boxes', 'binder', 'staircase', 'window'],
+            boxes: {
+                description: "Boxes. Just boxes everywhere. Dusty old boxes."
+            },
+            binder: {
+                description: "There's a binder here, but it's not dusty like everything else"
+            },
+            staircase: {
+                description: "Where I just came from. If it wasn't as torn down as it is, I would happily leave."
+            },
+            window: {
+                description: "A broken window. I should probably stay away from the glass shards."
+            },
+
         },
         player = {
             location: [ basement, 'basement'],
             acceptedLocations: ['attic', 'library', 'livingroom', 'basement'],
             inventory: {
-                axe: {
-                    img: 'gonna-be-an-img-here-soon',
-                    name: 'An axe',
-                    description: 'Useful in sticky situations',
-                    isFound: false,
-                }
+                // axe: {
+                //     img: 'gonna-be-an-img-here-soon',
+                //     name: 'An axe',
+                //     description: 'Useful in sticky situations',
+                //     isFound: false,
+                // }
             }
         };
-        
+
 let     getRoomItems = document.querySelectorAll('#room-item-list li'),
         currentLocation = player.location[0];
 
@@ -74,6 +125,30 @@ function parseUserInput(e) {
         else if (noSpaceString === 'exit') {
             userActionInput += " - Thought it would be that easy, did you?"
         }
+
+        else if (checkFirstFourLetters === 'look') {
+            if (noSpaceString.length === 4) {
+                userActionInput += ' - Type "look" followed by an item in the room that you want to look at.'
+            }
+            else {
+                let checkIfItem = false
+            
+                for (i = 0; i < currentLocation.items.length; i++) {
+                    if (checkStringEnding === currentLocation.items[i]) {
+                        checkIfItem = true
+                    }
+                }
+                if (checkIfItem) {
+                    let selectedItem = currentLocation[checkStringEnding]
+                    userActionInput += ' - ' + selectedItem['description']
+                }
+                
+                else {
+                    userActionInput += " - Can't find that item in the room..."
+                }
+                
+            }
+        }
         
         else if (checkFirstFourLetters === 'move') {
             if (noSpaceString.length === 4) {
@@ -87,7 +162,6 @@ function parseUserInput(e) {
 
                 for (i = 0; i < player.acceptedLocations.length; i++) {
                     if (checkStringEnding === player.acceptedLocations[i]) {
-                        console.log(checkStringEnding, player.acceptedLocations[i])
                         checkIfLocation = true
                     }
                 }
