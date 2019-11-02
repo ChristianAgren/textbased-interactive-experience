@@ -9,61 +9,80 @@ const   inputButton = document.querySelector('button'),
             heater: {
                 lookDescription: "If this was on it might've been a little warmer in here...",
                 canBeTake: false,
-                canBeTakeReason: "...It's bolted to the ground"
+                canBeTakeReason: "...It's bolted to the ground",
+                canBeChop: false,
+                canBeChopReason: "...It might blow up, don't want that"
             },
             chest: {
                 lookDescription: "This looks VERY important... but it's locked. Go figure" ,
                 canBeTake: false,
-                canBeTakeReason: "Good idea, but it's far too heavy"
+                canBeTakeReason: "Good idea, but it's far too heavy",
+                canBeChop: false,
+                canBeChopReason: "I get a feeling I shouldn't do that, don't want to damage anything important"
 
             },
             door: {
-                lookDescription: "Seems locked... I wonder if something here could help me...",
+                lookDescription: "It's locked... I wonder if something here could help me...",
                 canBeTake: false,
-                canBeTakeReason: "I can't take a door with me..."
+                canBeTakeReason: "It's not really possible, the door is pretty sturdy",
+                canBeChop: true,
+                canBeChopReason: "That felt good, looks like there's a way out from this room"
             }
             
         },
         livingroom = {
-            items: ['table', 'drawer', 'painting', 'ceiling'],
+            items: ['table', 'drawer', 'painting', 'piano'],
             table: {
                 lookDescription: "An empty table, not of much use",
                 canBeTake: false,
-                canBeTakeReason: "Well maybe I could, but i'm not sure I should..."
+                canBeTakeReason: "Well maybe I could, but i'm not sure I should...",
+                canBeChop: false,
             },
             drawer: {
                 lookDescription: "Looks like a rugged old drawer...",
-                canBeTake: false
+                canBeTake: false,
+                canBeChop: false,
             },
             painting: {
                 lookDescription: "Of an old woman. She looks... happy? Does she want me to come closer?",
                 canBeTake: true,
-                inventoryDesc: "painting 1234"
+                inventoryDesc: "painting 1234",
+                canBeChop: false,
+                canBeChopReason: "Maybe I should try something else here..."
             },
-            couch: {
-                lookDescription: "This couch has seen better days",
-                canBeTake: false
+            piano: {
+                lookDescription: "I can play music when I'm out of this mess",
+                canBeTake: false,
+                canBeTakeReason: "Yeah... carrying around a piano. Makes sense...",
+                canBeChop: false,
+                canBeChopReason: "That wouldn't be fair to the piano"
             },
         },
         library = {
             items: ['book', 'bookshelf', 'globe', 'typewriter'],
             book: {
                 lookDescription: "An open book, lying on a table. Don't have time for reading...",
-                canBeTake: false
+                canBeTake: false,
+                canBeChop: false,
+                canBeChopReason: "I don't hate reading... that much"
             },
             bookshelf: {
                 lookDescription: "So many books, where would I start?",
                 canBeTake: false,
-                canBeTakeReason: "Can't really go around with a bookshelf on my back..."
+                canBeTakeReason: "Can't really go around with a bookshelf on my back...",
+                canBeChop: false,
             },
             globe: {
                 lookDescription: "A globe of the world. Seems like it's round after all!",
-                canBeTake: false
+                canBeTake: false,
+                canBeChop: false,
             },
             typewriter: {
                 lookDescription: "Someone's been writing something here, a paper is stuck in the mechanism",
                 canBeTake: true,
-                inventoryDesc: "paper asdf"
+                inventoryDesc: "paper asdf",
+                canBeChop: false,
+                canBeChopReason: "It feels like I should be trying something else"
             },
             
         },
@@ -71,20 +90,29 @@ const   inputButton = document.querySelector('button'),
             items: ['boxes', 'binder', 'staircase', 'window'],
             boxes: {
                 lookDescription: "Boxes. Just boxes everywhere. Dusty old boxes",
-                canBeTake: false
+                canBeTake: false,
+                canBeChop: true,
+                canBeChopReason: "Doesn't look like there's anything here. And now the air is filled with dust..."
             },
             binder: {
                 lookDescription: "There's a binder here, but it's not dusty like everything else",
                 canBeTake: true,
-                inventoryDesc: "picture qwert"
+                inventoryDesc: "picture qwert",
+                canBeChop: false,
+                canBeChopReason: "I wonder if I should chop it...? Maybe not"
+
             },
             staircase: {
                 lookDescription: "Where I just came from. If it wasn't as creaky as it is, I would leave happily",
-                canBeTake: false
+                canBeTake: false,
+                canBeChop: false,
+                canBeChopReason: "I need to be able to get back down somehow..."
             },
             window: {
                 lookDescription: "A broken window. I should probably stay away from the glass shards",
-                canBeTake: false
+                canBeTake: false,
+                canBeChop: false,
+                canBeChopReason: "Looks pretty beat up as is..."
             },
 
         },
@@ -108,6 +136,10 @@ function capitilizeFirstLetter(string) {
     
  } 
     
+/** Updates the "found items:" interface
+ * 
+ * @param {string} newItem Item that player took from room
+ */
 function updateFoundItemsInterface(newItem) {
 
     const   buildSearchTitle = "."+newItem+"-desc h4",
@@ -133,13 +165,17 @@ function buildInventory(newItem) {
     player.inventory.push(newItem)  
     updateFoundItemsInterface(newItem)
 
+    console.log(player.inventory);
+    
+
 }
     
 /**Loads items into the interface when called
  * @param {number} itemNameIndex Index of item in array
  * @param {array} itemArray Item array of current location
+ * @param {string} itemString String of inputed item
  */
-function loadItems(itemNameIndex, itemArray, itemString) {
+function loadItems(itemNameIndex, itemArray, itemString, shouldBuildInventory) {
 
     getRoomItems = document.querySelectorAll('#room-item-list li')
     currentLocation = player.location[0]
@@ -149,8 +185,10 @@ function loadItems(itemNameIndex, itemArray, itemString) {
     }
 
     if (itemArray != undefined) {
-        let newItemArray = itemArray.splice(itemNameIndex, 1)       
-        buildInventory(itemString)
+        let newItemArray = itemArray.splice(itemNameIndex, 1)  
+        if (shouldBuildInventory === true) {
+            buildInventory(itemString)
+        }     
     }
                 
     for (i=0 ; i < currentLocation.items.length ; i++) {
@@ -265,7 +303,7 @@ function parseUserInput(e) {
             userActionInput += " - Thought it would be that easy, did you?"
         }
 
-        else if (checkFirstFourLetters === 'look' || checkFirstFourLetters === 'take') {
+        else if (checkFirstFourLetters === 'look' || checkFirstFourLetters === 'take' || (checkFirstFourLetters === 'chop' && player.inventory.includes('axe'))) {
             if (noSpaceString.length === 4) {
                 userActionInput += ' - Type "' + userActionInput + '" followed by an item in the room that you want to interact with.'
             }
@@ -284,48 +322,50 @@ function parseUserInput(e) {
                     if (checkFirstFourLetters === 'look') {
                         userActionInput += ' - ' + selectedItem['lookDescription']
                     }
-                    else {
-                        if (selectedItem['canBeTake'] === true) {
-                            userActionInput += ' - Took ' + checkStringEnding
-                            
-                            loadItems(itemNameIndex, currentLocation['items'], checkStringEnding)
-                        }
-                        else {
-                            if ('canBeTakeReason' in selectedItem) {
+                    else if (checkFirstFourLetters === 'take' || checkFirstFourLetters === 'chop') {
+                        if ((checkFirstFourLetters === 'take' && selectedItem['canBeTake'] === false) || (checkFirstFourLetters === 'chop' && selectedItem['canBeChop'] === false) ) {
+                            if (checkFirstFourLetters === 'take' && 'canBeTakeReason' in selectedItem) {
                                 userActionInput +=' - ' + selectedItem['canBeTakeReason']
+                            }
+                            else if (checkFirstFourLetters === 'chop' && 'canBeChopReason' in selectedItem) {
+                                userActionInput +=' - ' + selectedItem['canBeChopReason']
                             }
                             else {
                                 userActionInput += " - Don't see why I should..."
                             }
                         }
-                        
-                    }
+                        else {
+                            let shouldBuildInventory = false
+
+                            if (checkFirstFourLetters === 'take') {
+                                userActionInput += ' - Took ' + checkStringEnding
+                                shouldBuildInventory = true
+                            }
+                            else {
+                                userActionInput += ' - Chopped ' + checkStringEnding + ' - ' + selectedItem['canBeChopReason']
+                            }
+                            loadItems(itemNameIndex, currentLocation['items'], checkStringEnding, shouldBuildInventory)
+                        }
+                    }                        
                 }
-                
                 else {
                     userActionInput += " - Can't find that item in the room..."
                 }                
             }
-        }
+        }       
         
         else if (checkFirstFourLetters === 'move') {
             if (noSpaceString.length === 4) {
                 userActionInput += ' - Type "move" and where you want to go. Locations are to the right.' 
             }
             else if (checkStringEnding === player.location[1]) {
-                userActionInput += ' - You are already there'
+                userActionInput += " - You're already there"
             }
             else {
-                let checkIfLocation = false
 
-                for (i = 0; i < player.acceptedLocations.length; i++) {
-                    if (checkStringEnding === player.acceptedLocations[i]) {
-                        checkIfLocation = true
-                    }
-                }
-                if (checkIfLocation) {
+                if (player.acceptedLocations.includes(checkStringEnding)) {
                     updateLocationGraphic(checkStringEnding) 
-                    userActionInput += ' - You went to the ' + player.location[1]
+                    userActionInput += " - You went to the " + player.location[1]
                 }
                 else {
                     userActionInput += " - Invalid location..."
