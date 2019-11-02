@@ -1,85 +1,89 @@
 const   inputButton = document.querySelector('button'),
         basement = {
-            items: ['heater', 'axe', 'chest', 'door'],
+            items: ['axe', 'heater', 'chest', 'door'],
+            axe: {
+                lookDescription: "Useful in a sticky situation",
+                canBeTake: true,
+                inventoryDesc: "An axe might come in handy"
+            },
             heater: {
-                description: "If this was on it might've been a little warmer in here...",
+                lookDescription: "If this was on it might've been a little warmer in here...",
                 canBeTake: false,
                 canBeTakeReason: "...It's bolted to the ground"
             },
-            axe: {
-                description: "Useful in a sticky situation",
-                canBeTake: true,
-            },
             chest: {
-                description: "This looks VERY important... but it's locked. Go figure" ,
+                lookDescription: "This looks VERY important... but it's locked. Go figure" ,
                 canBeTake: false,
                 canBeTakeReason: "Good idea, but it's far too heavy"
 
             },
             door: {
-                description: "Seems locked... I wonder if something here could help me...",
+                lookDescription: "Seems locked... I wonder if something here could help me...",
                 canBeTake: false,
                 canBeTakeReason: "I can't take a door with me..."
             }
             
         },
         livingroom = {
-            items: ['table', 'painting', 'drawer', 'ceiling'],
+            items: ['table', 'drawer', 'painting', 'ceiling'],
             table: {
-                description: "An empty table, not of much use",
+                lookDescription: "An empty table, not of much use",
                 canBeTake: false,
                 canBeTakeReason: "Well maybe I could, but i'm not sure I should..."
             },
-            painting: {
-                description: "Of an old woman. She looks... happy? Does she want me to come closer?",
-                canBeTake: true
-            },
             drawer: {
-                description: "Looks like a rugged old drawer...",
+                lookDescription: "Looks like a rugged old drawer...",
                 canBeTake: false
             },
+            painting: {
+                lookDescription: "Of an old woman. She looks... happy? Does she want me to come closer?",
+                canBeTake: true,
+                inventoryDesc: "painting 1234"
+            },
             couch: {
-                description: "This couch has seen better days",
+                lookDescription: "This couch has seen better days",
                 canBeTake: false
             },
         },
         library = {
             items: ['book', 'bookshelf', 'globe', 'typewriter'],
             book: {
-                description: "An open book, lying on a table. Don't have time for reading...",
+                lookDescription: "An open book, lying on a table. Don't have time for reading...",
                 canBeTake: false
             },
             bookshelf: {
-                description: "So many books, where would I start?",
+                lookDescription: "So many books, where would I start?",
                 canBeTake: false,
                 canBeTakeReason: "Can't really go around with a bookshelf on my back..."
             },
             globe: {
-                description: "A globe of the world. Seems like it's round after all!",
+                lookDescription: "A globe of the world. Seems like it's round after all!",
                 canBeTake: false
             },
             typewriter: {
-                description: "Someone's been writing something here, a paper is stuck in the mechanism",
-                canBeTake: true
+                lookDescription: "Someone's been writing something here, a paper is stuck in the mechanism",
+                canBeTake: true,
+                inventoryDesc: "paper asdf"
             },
-
+            
         },
         attic = {
             items: ['boxes', 'binder', 'staircase', 'window'],
             boxes: {
-                description: "Boxes. Just boxes everywhere. Dusty old boxes",
+                lookDescription: "Boxes. Just boxes everywhere. Dusty old boxes",
                 canBeTake: false
             },
             binder: {
-                description: "There's a binder here, but it's not dusty like everything else",
-                canBeTake: true
+                lookDescription: "There's a binder here, but it's not dusty like everything else",
+                canBeTake: true,
+                inventoryDesc: "picture qwert"
             },
             staircase: {
-                description: "Where I just came from. If it wasn't as creaky as it is, I would leave happily",
+                lookDescription: "Where I just came from. If it wasn't as creaky as it is, I would leave happily",
                 canBeTake: false
             },
             window: {
-                description: "A broken window. I should probably stay away from the glass shards",
+                lookDescription: "A broken window. I should probably stay away from the glass shards",
                 canBeTake: false
             },
 
@@ -106,10 +110,18 @@ function capitilizeFirstLetter(string) {
     
 function updateFoundItemsInterface(newItem) {
 
-    const   buildSearchString = '.'+newItem,
-    selectedNode = document.querySelector('.axe-desc h4')
-    selectedNode.innerText = capitilizeFirstLetter(newItem)
-        
+    const   buildSearchTitle = "."+newItem+"-desc h4",
+            buildSearchDesc = "."+newItem+"-desc p",
+            selectedTitle = document.querySelector(buildSearchTitle),
+            selectedDesc = document.querySelector(buildSearchDesc),
+            selectedItem = currentLocation[newItem];
+            
+        selectedTitle.innerText = capitilizeFirstLetter(newItem)
+        selectedTitle.style.backgroundColor = "var(--secondary-color)"
+
+        selectedDesc.innerText = selectedItem['inventoryDesc']
+        selectedDesc.style.backgroundColor = "var(--secondary-color)"
+            
 }
 
 /** Places item in player inventory
@@ -270,7 +282,7 @@ function parseUserInput(e) {
                 if (checkIfItem) {
                     const selectedItem = currentLocation[checkStringEnding]
                     if (checkFirstFourLetters === 'look') {
-                        userActionInput += ' - ' + selectedItem['description']
+                        userActionInput += ' - ' + selectedItem['lookDescription']
                     }
                     else {
                         if (selectedItem['canBeTake'] === true) {

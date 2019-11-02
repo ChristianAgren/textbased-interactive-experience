@@ -125,10 +125,12 @@ button {
     grid-template-columns: .8fr 2.5fr;
     grid-template-rows: auto;
     grid-column-gap: .3rem;
-    grid-row-gap: .6rem;
+    grid-row-gap: 1.8rem;
     grid-template-areas:
     "axeimg axedesc" 
-    "dummyimg dummydesc"
+    "painimg paindesc"
+    "typeimg typedesc"
+    "bindimg binddesc"
 }
 
 .grid-item {
@@ -148,18 +150,18 @@ button {
     box-shadow: inset .4rem .4rem .3rem black;
 }
 
-.inv-desc h4, .inv-desc p {
-    margin-top: .4rem;
-    
+.inv-desc h4, .inv-desc p {    
     font-size: 1.2rem;
     background-color: var(--primary-color-alpha);
 }
 
 .inv-desc h4 {
+    margin-top: .6rem;
     width: 80%;
 }
 
 .inv-desc p {
+    margin-top: .1rem;
     width: 100%;
 }
 
@@ -207,14 +209,33 @@ button {
 .axe-img {
     grid-area: axeimg;
 }
-.binder-img {
-    grid-area: dummyimg;
+
+.painting-img {
+    grid-area: painimg;
 }
+
+.typewriter-img {
+    grid-area: typeimg;
+}
+
+.binder-img {
+    grid-area: bindimg;
+}
+
 .axe-desc {
     grid-area: axedesc;
 }
+
+.painting-desc {
+    grid-area: paindesc;
+}
+
+.typewriter-desc {
+    grid-area: typedesc;
+}
+
 .binder-desc {
-    grid-area: dummydesc;
+    grid-area: binddesc;
 }
 
 .action {
