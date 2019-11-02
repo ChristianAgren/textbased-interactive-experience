@@ -38,7 +38,7 @@ ul {
 }
 
 ul li {
-    margin: .4rem 1rem 0 0;
+    margin: .4rem 0 0 0;
 
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -101,7 +101,6 @@ button {
     grid-template-columns: 1rem 1fr 1rem;
     grid-template-areas: 
     ". instructions ."
-    ;
 }
 
 .grid-container {
@@ -111,7 +110,7 @@ button {
 
     display: grid;
     grid-template-columns: .6fr .5rem 1.2fr .5rem .6fr;
-    grid-template-rows: 1fr .4fr .5fr .1fr;
+    grid-template-rows: 1fr .3fr .7fr .1fr;
     grid-row-gap: .5rem;
     grid-template-areas:
     ". . description . inventory"
@@ -200,12 +199,21 @@ button {
 }
 
 .room-items {
-    margin: 2rem;
+    margin: auto auto;
+    text-align: center;
+}
+
+.room-items ul {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .room-items li {
     font-size: 2rem;
     background-color: rgba(255, 255, 255, 0.15);
+}
+.room-items li:not(:last-child) {
+    margin-right: 1rem
 }
 
 .inventory {
@@ -246,7 +254,6 @@ button {
 
 .action {
     grid-area: action;
-    z-index: 1;
 }
 
 .user-input {
