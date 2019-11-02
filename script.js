@@ -126,8 +126,7 @@ let     getRoomItems = document.querySelectorAll('#room-item-list li'),
         currentLocation = player.location[0];
 
 
-/**
- * Returns a capitilized string
+/**Returns a capitilized string
  * @param {string} string A string that is to be capitilized
  */ 
 function capitilizeFirstLetter(string) {
@@ -137,7 +136,6 @@ function capitilizeFirstLetter(string) {
  } 
     
 /** Updates the "found items:" interface
- * 
  * @param {string} newItem Item that player took from room
  */
 function updateFoundItemsInterface(newItem) {
@@ -157,7 +155,6 @@ function updateFoundItemsInterface(newItem) {
 }
 
 /** Places item in player inventory
- * 
  * @param {string} newItem Item that player took from room
  */
 function buildInventory(newItem) {
@@ -200,30 +197,42 @@ function loadItems(itemNameIndex, itemArray, itemString, shouldBuildInventory) {
 
 }
 
-/**
- * Function for managing action history
- * @param {string} assignedAction User inputs assigned action
+/**Function for managing element lists
+ * @param {string} assignedAction   User inputs assigned action. If undefined it updates the commands list
  */
 function updateListElements(assignedAction) {
+    let getElementsList,
+        buildElementsArray;
 
-    let getActionsList = document.querySelectorAll('#user-action-list li'),
-        buildActionArray = []
-        
-    for (i = 0; i < getActionsList.length; i++) {
-         buildActionArray[i] = getActionsList[i].innerText
+    if (assignedAction != undefined) {
+        getElementsList = document.querySelectorAll('#user-action-list li')
+        buildElementsArray = []
+
+        for (i = 0; i < getElementsList.length; i++) {
+            buildElementsArray[i] = getElementsList[i].innerText
+            
+        }
+        buildElementsArray.shift()
+        buildElementsArray.push(assignedAction)  
+    }
+    else {
+        getElementsList = document.querySelectorAll('.commands-list li')
+        buildElementsArray = [  'instruction - opens instructions',
+                                'move *location*',
+                                'look/take *item*',
+                                'help',
+                                'exit',
+                                'chop *item*',
+                                '...',
+                            ];
     }
     
-    buildActionArray.shift()
-    buildActionArray.push(assignedAction)  
-    
-    for (i = 0; i < getActionsList.length; i++) {
-        getActionsList[i].innerText = buildActionArray[i]
+    for (i = 0; i < getElementsList.length; i++) {
+        getElementsList[i].innerText = buildElementsArray[i]
     }
-
 }
 
-/**
- * Updates new location for logic
+/**Updates new location for logic
  * @param {string} location String based off user's input
  */
 function updateLocationLogic(location) {
@@ -245,8 +254,22 @@ function updateLocationLogic(location) {
 
 }
 
-/**
- * Updates new location interface it based on input
+function updateCurrentLocationGraphic() {
+    let newLocation,
+        oldLocation = currentLocation[1];
+
+    if (oldLocation === 'basement') {
+        newLocation = livingroom
+    }
+    else if (oldLocation === 'livingroom') {
+        newLocation = library
+    }
+    else if (oldLocation === 'library') {
+        newLocation = attic
+    }
+}
+
+/**Updates new location interface it based off input
  * @param {string} location String based off user's input
  */
 function updateLocationGraphic(location) {
@@ -265,8 +288,7 @@ function updateLocationGraphic(location) {
     
 }
 
-/**
- * Reads users action input and outputs accordingly
+/**Reads users action input and outputs accordingly
  * @param {EventListener} e Listens for keypress/buttonclick
  */
 function parseUserInput(e) {
@@ -340,8 +362,17 @@ function parseUserInput(e) {
                             if (checkFirstFourLetters === 'take') {
                                 userActionInput += ' - Took ' + checkStringEnding
                                 shouldBuildInventory = true
+                                if (checkStringEnding === 'axe') {
+                                    updateListElements()
+                                }
                             }
                             else {
+                                if (checkStringEnding === 'door') {
+                                    console.log('insert location logic');
+
+                                    //updateLocationCurrentLocationGraphics()
+                                    
+                                }
                                 userActionInput += ' - Chopped ' + checkStringEnding + ' - ' + selectedItem['canBeChopReason']
                             }
                             loadItems(itemNameIndex, currentLocation['items'], checkStringEnding, shouldBuildInventory)
@@ -380,6 +411,7 @@ function parseUserInput(e) {
         userAction.value = ""
         
         userAction.focus()
+        newCommand = false
         updateListElements(userActionInput)
     }
 
