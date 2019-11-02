@@ -207,13 +207,13 @@ button {
 .axe-img {
     grid-area: axeimg;
 }
-.dummy-img {
+.binder-img {
     grid-area: dummyimg;
 }
 .axe-desc {
     grid-area: axedesc;
 }
-.dummy-desc {
+.binder-desc {
     grid-area: dummydesc;
 }
 

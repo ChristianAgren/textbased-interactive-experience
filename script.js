@@ -32,7 +32,7 @@ const   inputButton = document.querySelector('button'),
             },
             painting: {
                 description: "Of an old woman. She looks... happy? Does she want me to come closer?",
-                canBeTake: true,
+                canBeTake: true
             },
             drawer: {
                 description: "Looks like a rugged old drawer...",
@@ -60,7 +60,7 @@ const   inputButton = document.querySelector('button'),
             },
             typewriter: {
                 description: "Someone's been writing something here, a paper is stuck in the mechanism",
-                canBeTake: true,
+                canBeTake: true
             },
 
         },
@@ -87,26 +87,48 @@ const   inputButton = document.querySelector('button'),
         player = {
             location: [ basement, 'basement'],
             acceptedLocations: ['attic', 'library', 'livingroom', 'basement'],
-            inventory: {
-                // axe: {
-                //     img: 'gonna-be-an-img-here-soon',
-                //     name: 'An axe',
-                //     description: 'Useful in sticky situations',
-                //     isFound: false,
-                // }
-            }
+            inventory: []
         };
 
 let     getRoomItems = document.querySelectorAll('#room-item-list li'),
         currentLocation = player.location[0];
+
+
+/**
+ * Returns a capitilized string
+ * @param {string} string A string that is to be capitilized
+ */ 
+function capitilizeFirstLetter(string) {
+
+    return string.charAt(0).toUpperCase() + string.slice(1)
     
+ } 
     
+function updateFoundItemsInterface(newItem) {
+
+    const   buildSearchString = '.'+newItem,
+    selectedNode = document.querySelector('.axe-desc h4')
+    selectedNode.innerText = capitilizeFirstLetter(newItem)
+        
+}
+
+/** Places item in player inventory
+ * 
+ * @param {string} newItem Item that player took from room
+ */
+function buildInventory(newItem) {
+    
+    player.inventory.push(newItem)  
+    updateFoundItemsInterface(newItem)
+
+}
     
 /**Loads items into the interface when called
  * @param {number} itemNameIndex Index of item in array
  * @param {array} itemArray Item array of current location
  */
-function loadItems(itemNameIndex, itemArray) {
+function loadItems(itemNameIndex, itemArray, itemString) {
+
     getRoomItems = document.querySelectorAll('#room-item-list li')
     currentLocation = player.location[0]
 
@@ -115,7 +137,8 @@ function loadItems(itemNameIndex, itemArray) {
     }
 
     if (itemArray != undefined) {
-        let newItemArray = itemArray.splice(itemNameIndex, 1)
+        let newItemArray = itemArray.splice(itemNameIndex, 1)       
+        buildInventory(itemString)
     }
                 
     for (i=0 ; i < currentLocation.items.length ; i++) {
@@ -124,6 +147,72 @@ function loadItems(itemNameIndex, itemArray) {
     newLiNode.appendChild(textNode)
     document.getElementById('room-item-list').appendChild(newLiNode)
     }
+
+}
+
+/**
+ * Function for managing action history
+ * @param {string} assignedAction User inputs assigned action
+ */
+function updateListElements(assignedAction) {
+
+    let getActionsList = document.querySelectorAll('#user-action-list li'),
+        buildActionArray = []
+        
+    for (i = 0; i < getActionsList.length; i++) {
+         buildActionArray[i] = getActionsList[i].innerText
+    }
+    
+    buildActionArray.shift()
+    buildActionArray.push(assignedAction)  
+    
+    for (i = 0; i < getActionsList.length; i++) {
+        getActionsList[i].innerText = buildActionArray[i]
+    }
+
+}
+
+/**
+ * Updates new location for logic
+ * @param {string} location String based off user's input
+ */
+function updateLocationLogic(location) {
+    
+    if (location === 'basement') {
+        player.location[0] = basement
+    }
+    else if (location === 'livingroom') {
+        player.location[0] = livingroom
+    }
+    else if (location === 'library') {
+        player.location[0] = library
+    }
+    else {
+        player.location[0] = attic
+    }
+    player.location[1] = location    
+    loadItems()
+
+}
+
+/**
+ * Updates new location interface it based on input
+ * @param {string} location String based off user's input
+ */
+function updateLocationGraphic(location) {
+    const   oldLocation = document.querySelector('.'+player.location[1]),
+            newLocation = document.querySelector('.'+location);
+
+    oldLocation.innerText = capitilizeFirstLetter(player.location[1])
+    oldLocation.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'
+    oldLocation.style.color = 'var(--primary-color)'
+    
+    newLocation.innerText = capitilizeFirstLetter(location) + ' - You are here'
+    newLocation.style.backgroundColor = '#111112E5'
+    newLocation.style.color = 'var(--secondary-color)'
+
+    updateLocationLogic(location)
+    
 }
 
 /**
@@ -187,7 +276,7 @@ function parseUserInput(e) {
                         if (selectedItem['canBeTake'] === true) {
                             userActionInput += ' - Took ' + checkStringEnding
                             
-                            loadItems(itemNameIndex, currentLocation['items'])
+                            loadItems(itemNameIndex, currentLocation['items'], checkStringEnding)
                         }
                         else {
                             if ('canBeTakeReason' in selectedItem) {
@@ -241,78 +330,8 @@ function parseUserInput(e) {
         userAction.focus()
         updateListElements(userActionInput)
     }
+
 }
-
-/**
- * Function for managing action history
- * @param {string} assignedAction User inputs assigned action
- */
-function updateListElements(assignedAction) {
-    let getActionsList = document.querySelectorAll('#user-action-list li'),
-        buildActionArray = []
-        
-    for (i = 0; i < getActionsList.length; i++) {
-         buildActionArray[i] = getActionsList[i].innerText
-    }
-    
-    buildActionArray.shift()
-    buildActionArray.push(assignedAction)  
-    
-    for (i = 0; i < getActionsList.length; i++) {
-        getActionsList[i].innerText = buildActionArray[i]
-    }
-}
-
-/**
- * Updates new location interface it based on input
- * @param {string} location String based off user's input
- */
-function updateLocationGraphic(location) {
-    const   oldLocation = document.querySelector('.'+player.location[1]),
-            newLocation = document.querySelector('.'+location);
-
-    oldLocation.innerText = capitilizeFirstLetter(player.location[1])
-    oldLocation.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'
-    oldLocation.style.color = 'var(--primary-color)'
-    
-    newLocation.innerText = capitilizeFirstLetter(location) + ' - You are here'
-    newLocation.style.backgroundColor = '#111112E5'
-    newLocation.style.color = 'var(--secondary-color)'
-
-    updateLocationLogic(location)
-    
-}
-
-/**
- * Updates new location for logic
- * @param {string} location String based off user's input
- */
-function updateLocationLogic(location) {
-    
-    if (location === 'basement') {
-        player.location[0] = basement
-    }
-    else if (location === 'livingroom') {
-        player.location[0] = livingroom
-    }
-    else if (location === 'library') {
-        player.location[0] = library
-    }
-    else {
-        player.location[0] = attic
-    }
-    player.location[1] = location    
-    loadItems()
-}
-
-/**
- * Returns a capitilized string
- * @param {string} string A string that is to be capitilized
- */ 
-function capitilizeFirstLetter(string) {
-   return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
 
 
 // Eventlisteners
