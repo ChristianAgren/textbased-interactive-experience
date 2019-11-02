@@ -191,6 +191,8 @@ button {
     width: 100%;
     text-align: start;
     font-size: 1.2rem;
+
+    animation: .5s ease-in .2s forwards slidein ;
 }
 
 .item-container {
