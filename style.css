@@ -1,3 +1,6 @@
+/*---- GLOBAL-STYLING ----*/
+/*------------------------*/
+
 * {
     margin: 0;
     padding: 0;
@@ -6,6 +9,7 @@
 :root {
     --primary-color: #29292b;
     --primary-color-alpha: rgba(17, 17, 18, 0.5);
+    --primary-color-alpha-less: rgba(17, 17, 18, 0.75);
     --primary-color-darker: rgb(3, 3, 3);
     --secondary-color: #eeeeee; 
 }
@@ -91,6 +95,9 @@ button {
     align-items: center;
 }
 
+/*---- GRID-CONTAINERS ----*/
+/*-------------------------*/
+
 .instructions-grid {
     z-index: 3;
     position: absolute;
@@ -102,6 +109,21 @@ button {
     grid-template-columns: 1rem 1fr 1rem;
     grid-template-areas: 
     ". instructions ."
+}
+
+.last-phase-grid {
+    z-index: 3;
+    position: absolute;
+
+    width: 100%;
+    height: 100vh;
+    background-color: var(--primary-color-alpha-less);
+
+    grid-template-columns: 1rem 1fr 1rem;
+    grid-template-rows: 2.08fr 1fr;
+    grid-template-areas: 
+    ". chest ."
+    ". . ."
 }
 
 .grid-container {
@@ -133,6 +155,9 @@ button {
     "typeimg typedesc"
     "bindimg binddesc"
 }
+
+/*-------- GRID-ITEMS --------*/
+/*------AREA-AND-STYLING------*/
 
 .grid-item {
     justify-self: center;
@@ -184,6 +209,14 @@ button {
     margin-top: 1rem;
 
     height: 90%;
+}
+.last-phase {
+    grid-area: chest;
+    margin-top: 1rem;
+
+    width: 50%;
+    height: 100%;
+    border-radius: 40% 40% .4rem .4rem;
 }
 
 .adventure-title {

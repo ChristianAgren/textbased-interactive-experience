@@ -5,6 +5,11 @@ const   inputButton = document.querySelector('button'),
         listenPhaseThree = document.querySelector('.library'),
         listenPhaseFour = document.querySelector('.attic'),
         listenPhaseFive = document.querySelector('.binder-desc h4'),
+        getLastPhase = document.querySelector('.last-phase-grid'),
+        getActionNode = document.querySelector('.action'),
+        getInventoryNode = document.querySelector('.inventory'),
+        lastPhaseTitle = document.querySelector('.last-phase-grid h1'),
+        lastPhaseBread = document.querySelector('.last-phase-grid p'),
         config = {
             attributes: true,
         },
@@ -146,6 +151,15 @@ function capitilizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
     
  } 
+
+/**Returns a string without spaces
+ * @param {string} string A string that needs spaces removed
+ */
+function removeSpaceFromString(string) {
+
+    return string.replace(/\s/g, '').toLowerCase()
+
+}
 
 /** Scrolls page content when MutantObserver observes changes
  * 
@@ -314,6 +328,9 @@ function updateLocationLogic(location) {
 
 }
 
+/** Updates player object with new location
+ * 
+ */
 function updateCurrentLocationGraphic() {
     let newLocation,
         oldLocation = currentLocation[1];
@@ -348,3 +365,16 @@ function updateLocationGraphic(location) {
     
 }
 
+function activateLastPhase() {
+    getLastPhase.style.display = 'grid'
+    lastPhaseTitle.innerText = '[ This is it! ]'
+    lastPhaseBread.innerText = 'You have everything you need in order to open the chest and get the antidote'
+    getActionNode.style.zIndex = '3'
+    getInventoryNode.style.zIndex = '3'
+
+}
+
+function activateEnding() {
+    lastPhaseTitle.innerText = '[ You did it! ]'
+    lastPhaseBread.innerText = 'You got the antidote!'
+}
