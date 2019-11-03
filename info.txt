@@ -27,7 +27,9 @@ Inspektera - 	Få mer information om ett objekt i ett rum
 
 
 todo:
-- Användaren ska kunna interagera med objekten.
-    - INTE något som inte finns i rummet som användaren befinner sig i.
-- kommandon:
-    - take - ta med sig ett item
+- gradient bakgrund på title och item-list
+- förhindra spelarens progression genom dörrar/ledtråd logik
+- fungerande kista
+- instruktioner
+- uppdaterad readme
+- timer om du hinner med
