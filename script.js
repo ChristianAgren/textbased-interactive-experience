@@ -5,9 +5,9 @@ const   inputButton = document.querySelector('button'),
         listenPhaseThree = document.querySelector('.library'),
         listenPhaseFour = document.querySelector('.attic'),
         listenPhaseFive = document.querySelector('.binder-desc h4'),
-        getLastPhase = document.querySelector('.last-phase-grid'),
         getActionNode = document.querySelector('.action'),
         getInventoryNode = document.querySelector('.inventory'),
+        getLastPhase = document.querySelector('.last-phase-grid'),
         lastPhaseTitle = document.querySelector('.last-phase-grid h1'),
         lastPhaseBread = document.querySelector('.last-phase-grid p'),
         getChestBox = document.querySelector('.last-phase'),
@@ -372,8 +372,11 @@ function activateLastPhase() {
  * 
  */
 function activateEnding() {
+    getActionNode.style.zIndex = ''
+    getInventoryNode.style.zIndex = ''
     lastPhaseTitle.innerText = '[ You did it! ]'
     lastPhaseBread.innerText = 'You got the antidote!'
     openChestEnding.className += ' opening-animation'
     getChestBox.className += ' last-phase-animation'
+    // getLastPhase.style.gridTemplateRows = '.02fr 2fr .7fr'
 }
