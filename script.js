@@ -13,7 +13,7 @@ const   inputButton = document.querySelector('button'),
                 lookDescription: "Useful in a sticky situation",
                 canBeTake: true,
                 inventoryDesc: "Might come in handy",
-                inventoryImg: "url('https://www.minasjr.com.br/wp-content/themes/minasjr/images/placeholders/placeholder_small.jpg')"
+                inventoryImg: "url('res/axe.svg')"
             },
             heater: {
                 lookDescription: "If this was on it might've been a little warmer in here...",
@@ -57,7 +57,8 @@ const   inputButton = document.querySelector('button'),
                 canBeTake: true,
                 inventoryDesc: "painting 1234",
                 canBeChop: false,
-                canBeChopReason: "Maybe I should try something else here..."
+                canBeChopReason: "Maybe I should try something else here...",
+                inventoryImg: "url('res/painting.svg')"
             },
             piano: {
                 lookDescription: "I can play music when I'm out of this mess",
@@ -91,7 +92,8 @@ const   inputButton = document.querySelector('button'),
                 canBeTake: true,
                 inventoryDesc: "paper asdf",
                 canBeChop: false,
-                canBeChopReason: "It feels like I should be trying something else"
+                canBeChopReason: "It feels like I should be trying something else",
+                inventoryImg: "url('res/paper.svg')"
             },
             
         },
@@ -108,7 +110,8 @@ const   inputButton = document.querySelector('button'),
                 canBeTake: true,
                 inventoryDesc: "picture qwert",
                 canBeChop: false,
-                canBeChopReason: "I wonder if I should chop it...? Maybe not"
+                canBeChopReason: "I wonder if I should chop it...? Maybe not",
+                inventoryImg: "url('res/picture.svg')"
 
             },
             staircase: {
