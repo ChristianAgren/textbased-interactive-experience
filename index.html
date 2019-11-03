@@ -14,10 +14,23 @@
     <title>Text-based adventure</title>
 </head>
 <body>
-    <div class="instructions-grid" style="display: none">
+    <div class="instructions-grid" style="display: grid">
         <div class="instructions grid-item flex-column-center" >
             <h1>[ Instructions ]</h1>
-            <p>This page will contain instructions in the future.</p>
+            <p> You've been poisoned. The objective of the game is to find the antidote as soon as possible. <br>
+                <br>
+                Use the commands below to navigate the puzzle:
+            </p>
+            <ul>
+                <li>Move *location* - moves you to a new location</li>
+                <li>Look *item* - Gives you a description of an item, and maybe a clue</li>
+                <li>Take *item* - Picks up an item</li>
+            </ul>
+            <p>
+                <strong>Be aware! You might get more options further in!</strong>
+            </p>
+            <h2>Good luck!</h2>
+            <h3>Type "instructions" below and press enter to close this window and start the game!</h3>
         </div>
     </div>
     <div class="last-phase-grid" style="display: none">
@@ -170,10 +183,8 @@
                     <ul class="commands-list">
                         <li>instructions - opens instructions</li>
                         <li>move *location*</li>
-                        <li>look/take *item*</li>
-                        <li>help</li>
-                        <li>exit</li>
-                        <li>...</li>
+                        <li>look *item*</li>
+                        <li>take *item*</li>
                         <li>...</li>
                     </ul>
                 </div>

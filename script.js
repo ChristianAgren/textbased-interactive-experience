@@ -230,6 +230,7 @@ function buildInventory(newItem) {
  * @param {number} itemNameIndex Index of item in array
  * @param {array} itemArray Item array of current location
  * @param {string} itemString String of inputed item
+ * @param {boolean} shouldBuildInventory Checks if item should be placed in inventory
  */
 function loadItems(itemNameIndex, itemArray, itemString, shouldBuildInventory) {
 
@@ -278,11 +279,9 @@ function updateListElements(assignedAction) {
         getElementsList = document.querySelectorAll('.commands-list li')
         buildElementsArray = [  'instruction - opens instructions',
                                 'move *location*',
-                                'look/take *item*',
-                                'help',
-                                'exit',
+                                'look *item*',
+                                'take *item*',
                                 'chop *item*',
-                                '...',
                             ];
     }
     
@@ -291,6 +290,10 @@ function updateListElements(assignedAction) {
     }
 }
 
+/**Unlocks all rooms
+ * 
+ * @param {string} string string based off user's input
+ */
 function unlockNewLocations(string) {
     if (string === 'door') {
         player.acceptedLocations.push('basement', 'livingroom', 'library', 'attic')
@@ -353,6 +356,9 @@ function updateLocationGraphic(location) {
     
 }
 
+/** Builds last phase
+ * 
+ */
 function activateLastPhase() {
     getLastPhase.style.display = 'grid'
     lastPhaseTitle.innerText = '[ This is it! ]'
@@ -362,6 +368,9 @@ function activateLastPhase() {
 
 }
 
+/** Builds game ending
+ * 
+ */
 function activateEnding() {
     lastPhaseTitle.innerText = '[ You did it! ]'
     lastPhaseBread.innerText = 'You got the antidote!'

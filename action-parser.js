@@ -34,12 +34,6 @@ function parseUserInput(e) {
             else if (noSpaceString === 'location') {
                 userActionInput += " - You can find the available locations to the right."
             }
-            else if (noSpaceString === 'help') {
-                userActionInput += " - Can't help you right now..."
-            }
-            else if (noSpaceString === 'exit') {
-                userActionInput += " - Thought it would be that easy, did you?"
-            }
             else if (checkFirstFourLetters === 'look' || checkFirstFourLetters === 'take' || (checkFirstFourLetters === 'chop' && player.inventory.includes('axe'))) {
                 if (noSpaceString.length === 4) {
                     userActionInput += ' - Type "' + userActionInput + '" followed by an item in the room that you want to interact with.'
