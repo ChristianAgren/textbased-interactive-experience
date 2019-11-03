@@ -57,7 +57,7 @@ function parseUserInput(e) {
                     if (checkIfItem) {
                         const selectedItem = currentLocation[checkStringEnding]
                         if (checkFirstFourLetters === 'look') {
-                            if ((checkStringEnding === 'chest') /* && (player.inventory.length === 4) */) {
+                            if ((checkStringEnding === 'chest') && (player.inventory.length === 4)) {
                                 if (getLastPhase.style.display === 'grid') {
                                     userActionInput += " - You're almost there"
                                 }

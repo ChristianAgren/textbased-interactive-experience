@@ -18,9 +18,9 @@ const   inputButton = document.querySelector('button'),
         basement = {
             items: ['axe', 'heater', 'chest', 'door'],
             axe: {
-                lookDescription: "Useful in a sticky situation",
+                lookDescription: "Maybe this could help me get out, or maybe even into that chest?",
                 canBeTake: true,
-                inventoryDesc: "Might come in handy",
+                inventoryDesc: "Well weighted, ready to strike",
                 inventoryImg: "url('res/axe.svg')"
             },
             heater: {
@@ -31,7 +31,7 @@ const   inputButton = document.querySelector('button'),
                 canBeChopReason: "...It might blow up, don't want that"
             },
             chest: {
-                lookDescription: "This looks VERY important... but it's locked. Go figure" ,
+                lookDescription: "This looks VERY important... but it's locked. Maybe I can get into it later" ,
                 canBeTake: false,
                 canBeTakeReason: "Good idea, but it's far too heavy",
                 canBeChop: false,
