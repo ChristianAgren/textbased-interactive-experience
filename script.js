@@ -12,7 +12,8 @@ const   inputButton = document.querySelector('button'),
             axe: {
                 lookDescription: "Useful in a sticky situation",
                 canBeTake: true,
-                inventoryDesc: "Might come in handy"
+                inventoryDesc: "Might come in handy",
+                inventoryImg: "url('https://www.minasjr.com.br/wp-content/themes/minasjr/images/placeholders/placeholder_small.jpg')"
             },
             heater: {
                 lookDescription: "If this was on it might've been a little warmer in here...",
@@ -175,12 +176,15 @@ function listenToPhases() {
  */
 function updateFoundItemsInterface(newItem) {
 
-    const   buildSearchTitle = "."+newItem+"-desc h4",
+    const   buildSearchImage = "."+newItem+"-img",
+            buildSearchTitle = "."+newItem+"-desc h4",
             buildSearchDesc = "."+newItem+"-desc p",
+            selectedImage = document.querySelector(buildSearchImage),
             selectedTitle = document.querySelector(buildSearchTitle),
             selectedDesc = document.querySelector(buildSearchDesc),
             selectedItem = currentLocation[newItem];
             
+        selectedImage.style.backgroundImage = selectedItem['inventoryImg']
         selectedTitle.innerText = capitilizeFirstLetter(newItem)
         selectedTitle.style.backgroundColor = "var(--secondary-color)"
 

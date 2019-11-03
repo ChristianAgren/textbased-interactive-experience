@@ -6,6 +6,7 @@
 :root {
     --primary-color: #29292b;
     --primary-color-alpha: rgba(17, 17, 18, 0.5);
+    --primary-color-darker: rgb(3, 3, 3);
     --secondary-color: #eeeeee; 
 }
 
@@ -16,7 +17,7 @@ body {
 
     font-family: 'Noto Serif', serif;
     font-size: 1.2rem;
-    background-color: var(--primary-color);
+    background: linear-gradient(var(--primary-color), var(--primary-color-darker));
     color: var(--secondary-color);
 
     display: flex;
@@ -147,6 +148,9 @@ button {
     width: 5rem; 
     border-radius: .4rem;
     background-color: var(--primary-color);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     box-shadow: inset .4rem .4rem .3rem black;
 }
 
