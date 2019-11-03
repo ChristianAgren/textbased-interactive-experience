@@ -35,7 +35,7 @@ const   inputButton = document.querySelector('button'),
                 canBeTake: false,
                 canBeTakeReason: "Well I don't know about that...",
                 canBeChop: true,
-                canBeChopReason: "That felt good, looks like there's a way out from this room"
+                canBeChopReason: "Looks like there's a way out from this room"
             }
             
         },
@@ -55,7 +55,7 @@ const   inputButton = document.querySelector('button'),
             painting: {
                 lookDescription: "Of an old woman. She looks... happy? Does she want me to come closer?",
                 canBeTake: true,
-                inventoryDesc: "painting 1234",
+                inventoryDesc: "There's an incription here, 'Ali'. I wonder who she is...",
                 canBeChop: false,
                 canBeChopReason: "Maybe I should try something else here...",
                 inventoryImg: "url('res/painting.svg')"
@@ -90,7 +90,7 @@ const   inputButton = document.querySelector('button'),
             typewriter: {
                 lookDescription: "Someone's been writing something here, a paper is stuck in the mechanism",
                 canBeTake: true,
-                inventoryDesc: "paper asdf",
+                inventoryDesc: "There's a single letter typed on the paper, 'V'",
                 canBeChop: false,
                 canBeChopReason: "It feels like I should be trying something else",
                 inventoryImg: "url('res/paper.svg')"
@@ -108,7 +108,7 @@ const   inputButton = document.querySelector('button'),
             binder: {
                 lookDescription: "There's a binder here, but it's not dusty like everything else",
                 canBeTake: true,
-                inventoryDesc: "picture qwert",
+                inventoryDesc: "There was a picture in here, with the inscription 'E'",
                 canBeChop: false,
                 canBeChopReason: "I wonder if I should chop it...? Maybe not",
                 inventoryImg: "url('res/picture.svg')"
