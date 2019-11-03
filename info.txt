@@ -27,7 +27,7 @@ Inspektera - 	Få mer information om ett objekt i ett rum
 
 
 todo:
-- förhindra spelarens progression genom dörrar/ledtråd logik
+- förhindra spelarens progression genom dörrar/ledtråd logik (lägg till location i array när event sker)
 - fungerande kista
 - instruktioner + phases
 - bilder för föremål i found items

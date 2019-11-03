@@ -80,7 +80,7 @@ function parseUserInput(e) {
                                 if (checkStringEnding === 'door') {
                                     console.log('insert location logic');
 
-                                    //updateLocationCurrentLocationGraphics()
+                                    unlockNewLocations(checkStringEnding)
                                     
                                 }
                                 userActionInput += ' - Chopped ' + checkStringEnding + ' - ' + selectedItem['canBeChopReason']

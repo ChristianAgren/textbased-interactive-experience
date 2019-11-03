@@ -1,9 +1,10 @@
 const   inputButton = document.querySelector('button'),
         getAdventureTitle = document.querySelector('.adventure-title h1'),
         listenPhaseOne = document.querySelector('.axe-desc h4'),
-        listenPhaseTwo = document.querySelector('.painting-desc h4'),
-        listenPhaseThree = document.querySelector('.typewriter-desc h4'),
-        listenPhaseFour = document.querySelector('.binder-desc h4'),
+        listenPhaseTwo = document.querySelector('.livingroom'),
+        listenPhaseThree = document.querySelector('.library'),
+        listenPhaseFour = document.querySelector('.attic'),
+        listenPhaseFive = document.querySelector('.binder-desc h4'),
         config = {
             attributes: true,
         },
@@ -129,8 +130,8 @@ const   inputButton = document.querySelector('button'),
 
         },
         player = {
-            location: [ basement, 'basement'],
-            acceptedLocations: ['attic', 'library', 'livingroom', 'basement'],
+            location: [ basement],
+            acceptedLocations: [],
             inventory: []
         };
 
@@ -146,31 +147,36 @@ function capitilizeFirstLetter(string) {
     
  } 
 
+/** Scrolls page content when MutantObserver observes changes
+ * 
+ */
 function listenToPhases() {
     let getWhichPhase
 
-    if (getAdventureTitle.innerText === '[ Description ]') {
+    if (getAdventureTitle.innerText === '[ Prologue ]') {
         getWhichPhase = document.querySelector('.phase-one')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
         getAdventureTitle.innerText = '[ The Axe ]'
     }
-    else if (getAdventureTitle.innerText === '[ The Axe ]') {
+    else if ((getAdventureTitle.innerText === '[ The Axe ]') && (player.location[0] === livingroom)) {
         getWhichPhase = document.querySelector('.phase-two')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
-        getAdventureTitle.innerText = '[ The First Clue ]'
+        getAdventureTitle.innerText = '[ The Living room ]'
     }
-    else if (getAdventureTitle.innerText === '[ The First Clue ]') {
+    else if ((getAdventureTitle.innerText === '[ The Living room ]') && (player.location[0] === library)){
         getWhichPhase = document.querySelector('.phase-three')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
-        getAdventureTitle.innerText = '[ Getting further ]'
+        getAdventureTitle.innerText = '[ The Library ]'       
     }
-    else if (getAdventureTitle.innerText === '[ Getting further ]') {
+    else if ((getAdventureTitle.innerText === '[ The Library ]') && (player.location[0] === attic)) {
         getWhichPhase = document.querySelector('.phase-four')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
-        getAdventureTitle.innerText = '[ Almost there ]'
+        getAdventureTitle.innerText = '[ The Attic ]'
     }
-    else {
-        observer.disconnect()
+    else if ((getAdventureTitle.innerText === '[ The Attic ]') && (player.inventory.includes('binder'))) {
+        getWhichPhase = document.querySelector('.phase-five')
+        getWhichPhase.scrollIntoView({behavior:"smooth"})
+        getAdventureTitle.innerText = '[ Almost there ]'
     }
 }
     
@@ -196,6 +202,21 @@ function updateFoundItemsInterface(newItem) {
             
 }
 
+function unlockNewLocations(string) {
+    if (string === 'painting') {
+        player.acceptedLocations.push('library')
+    }
+    else if (string === 'typewriter') {
+        player.acceptedLocations.push('attic')
+    }
+    else if (string === 'door') {
+        player.acceptedLocations.push('basement', 'livingroom')
+        player.location.push('basement')
+        console.log(player.acceptedLocations);
+        
+    }
+}
+
 /** Places item in player inventory
  * @param {string} newItem Item that player took from room
  */
@@ -203,7 +224,7 @@ function buildInventory(newItem) {
 
     player.inventory.push(newItem)  
     updateFoundItemsInterface(newItem)
-
+    unlockNewLocations(newItem)
 }
     
 /**Loads items into the interface when called
