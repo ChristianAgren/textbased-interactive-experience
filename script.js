@@ -96,7 +96,7 @@ const   inputButton = document.querySelector('button'),
             typewriter: {
                 lookDescription: "Someone's been writing something here, a paper is stuck in the mechanism",
                 canBeTake: true,
-                inventoryDesc: "There's a single letter typed on the paper, 'V'",
+                inventoryDesc: "There's a single letter on the paper, 'V'",
                 canBeChop: false,
                 canBeChopReason: "It feels like I should be trying something else",
                 inventoryImg: "url('res/paper.svg')"
@@ -172,25 +172,25 @@ function listenToPhases() {
         getWhichPhase.scrollIntoView({behavior:"smooth"})
         getAdventureTitle.innerText = '[ The Axe ]'
     }
-    else if ((getAdventureTitle.innerText === '[ The Axe ]') && (player.location[0] === livingroom)) {
+    else if (player.location[0] === livingroom) {
         getWhichPhase = document.querySelector('.phase-two')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
         getAdventureTitle.innerText = '[ The Living room ]'
     }
-    else if ((getAdventureTitle.innerText === '[ The Living room ]') && (player.location[0] === library)){
+    else if (player.location[0] === library){
         getWhichPhase = document.querySelector('.phase-three')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
         getAdventureTitle.innerText = '[ The Library ]'       
     }
-    else if ((getAdventureTitle.innerText === '[ The Library ]') && (player.location[0] === attic)) {
+    else if (player.location[0] === attic) {
         getWhichPhase = document.querySelector('.phase-four')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
         getAdventureTitle.innerText = '[ The Attic ]'
     }
-    else if ((getAdventureTitle.innerText === '[ The Attic ]') && (player.inventory.includes('binder'))) {
+    else if (player.location[0] === basement) {
         getWhichPhase = document.querySelector('.phase-five')
         getWhichPhase.scrollIntoView({behavior:"smooth"})
-        getAdventureTitle.innerText = '[ Almost there ]'
+        getAdventureTitle.innerText = '[ The Basement ]'
     }
 }
     
@@ -216,29 +216,12 @@ function updateFoundItemsInterface(newItem) {
             
 }
 
-function unlockNewLocations(string) {
-    if (string === 'painting') {
-        player.acceptedLocations.push('library')
-    }
-    else if (string === 'typewriter') {
-        player.acceptedLocations.push('attic')
-    }
-    else if (string === 'door') {
-        player.acceptedLocations.push('basement', 'livingroom')
-        player.location.push('basement')
-        console.log(player.acceptedLocations);
-        
-    }
-}
-
 /** Places item in player inventory
  * @param {string} newItem Item that player took from room
  */
 function buildInventory(newItem) {
-
     player.inventory.push(newItem)  
     updateFoundItemsInterface(newItem)
-    unlockNewLocations(newItem)
 }
     
 /**Loads items into the interface when called
@@ -306,6 +289,14 @@ function updateListElements(assignedAction) {
     }
 }
 
+function unlockNewLocations(string) {
+    if (string === 'door') {
+        player.acceptedLocations.push('basement', 'livingroom', 'library', 'attic')
+        player.location.push('basement')
+        updateLocationGraphic(string)    
+    }
+}
+
 /**Updates new location for logic
  * @param {string} location String based off user's input
  */
@@ -328,28 +319,23 @@ function updateLocationLogic(location) {
 
 }
 
-/** Updates player object with new location
- * 
- */
-function updateCurrentLocationGraphic() {
-    let newLocation,
-        oldLocation = currentLocation[1];
-
-    if (oldLocation === 'basement') {
-        newLocation = livingroom
-    }
-    else if (oldLocation === 'livingroom') {
-        newLocation = library
-    }
-    else if (oldLocation === 'library') {
-        newLocation = attic
-    }
-}
-
 /**Updates new location interface it based off input
  * @param {string} location String based off user's input
  */
 function updateLocationGraphic(location) {
+    if (location === 'door') {
+        let updateAllLocations,
+            updateAllgraphics;
+
+        location = 'basement'
+        for (i=0; i<player.acceptedLocations.length;i++) {
+            updateAllgraphics = document.querySelector('.'+player.acceptedLocations[i])
+            updateAllLocations = player.acceptedLocations[i]
+
+            updateAllgraphics.innerText = capitilizeFirstLetter(updateAllLocations)
+        }
+    }
+
     const   oldLocation = document.querySelector('.'+player.location[1]),
             newLocation = document.querySelector('.'+location);
 
