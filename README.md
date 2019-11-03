@@ -10,4 +10,5 @@ Look at all the items and find all the clues you need in order to come out as a 
 **The game is supposed to be played on a 1920x1080 resolution and isn't optimized for other resolutions. Sorry for the inconvenience!**
 
 GitHub Repo: https://github.com/ChristianAgren/textbased-interactive-experience
+
 GitHub Pages: https://christianagren.github.io/textbased-interactive-experience/
