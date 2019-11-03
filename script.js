@@ -378,5 +378,4 @@ function activateEnding() {
     lastPhaseBread.innerText = 'You got the antidote!'
     openChestEnding.className += ' opening-animation'
     getChestBox.className += ' last-phase-animation'
-    // getLastPhase.style.gridTemplateRows = '.02fr 2fr .7fr'
 }
