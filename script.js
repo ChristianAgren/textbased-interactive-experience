@@ -10,6 +10,8 @@ const   inputButton = document.querySelector('button'),
         getInventoryNode = document.querySelector('.inventory'),
         lastPhaseTitle = document.querySelector('.last-phase-grid h1'),
         lastPhaseBread = document.querySelector('.last-phase-grid p'),
+        getChestBox = document.querySelector('.last-phase'),
+        openChestEnding = document.querySelector('.opening'),
         config = {
             attributes: true,
         },
@@ -363,4 +365,6 @@ function activateLastPhase() {
 function activateEnding() {
     lastPhaseTitle.innerText = '[ You did it! ]'
     lastPhaseBread.innerText = 'You got the antidote!'
+    openChestEnding.className += ' opening-animation'
+    getChestBox.className += ' last-phase-animation'
 }

@@ -1,33 +1,4 @@
-Rum 1 - livingroom
-	föremål 1 - (krävs för ledtråd 1)
-	ledtråd 2
-
-Rum 2 - library
-	föremål 2 - (krävs för ledtråd 2)
-	ledtråd 3
-
-Rum 3 - attic
-	ledtråd 1
-	föremål 3 - (krävs för ledtråd 3)	
-
-Rum 4 - basement - rummet du börjar i
-	kista - kombination
-		[ledtråd 2, ledtråd 3, ledtråd 1]
-
-Person - lapp med instruktioner
-
-Du är förgiftad, personen som förgiftade dig gav dig en lapp med instruktioner.
-På instruktionerna så står det att du kan hitta motgiftet i kistan.
-Inom 1 minut så kommer giftet att börja verka.
-
-Användarens val:
-
-Inspektera - 	Få mer information om ett objekt i ett rum
-		Få fler val som går att utföra med objektet
-
 
 todo:
-- förhindra spelarens progression genom dörrar/ledtråd logik (lägg till location i array när event sker)
-- instruktioner + phases
+- instruktioner
 - uppdaterad readme
-- timer om du hinner med
