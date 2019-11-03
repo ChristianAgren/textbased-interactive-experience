@@ -31,5 +31,6 @@ todo:
 - förhindra spelarens progression genom dörrar/ledtråd logik
 - fungerande kista
 - instruktioner
+- bilder för föremål i found items
 - uppdaterad readme
 - timer om du hinner med
