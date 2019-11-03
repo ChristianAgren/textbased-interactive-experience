@@ -1,4 +1,12 @@
 const   inputButton = document.querySelector('button'),
+        getAdventureTitle = document.querySelector('.adventure-title h1'),
+        listenPhaseOne = document.querySelector('.axe-desc h4'),
+        listenPhaseTwo = document.querySelector('.painting-desc h4'),
+        listenPhaseThree = document.querySelector('.typewriter-desc h4'),
+        listenPhaseFour = document.querySelector('.binder-desc h4'),
+        config = {
+            attributes: true,
+        },
         basement = {
             items: ['axe', 'heater', 'chest', 'door'],
             axe: {
@@ -125,7 +133,6 @@ const   inputButton = document.querySelector('button'),
 let     getRoomItems = document.querySelectorAll('#room-item-list li'),
         currentLocation = player.location[0];
 
-
 /**Returns a capitilized string
  * @param {string} string A string that is to be capitilized
  */ 
@@ -134,6 +141,34 @@ function capitilizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
     
  } 
+
+function listenToPhases() {
+    let getWhichPhase
+
+    if (getAdventureTitle.innerText === '[ Description ]') {
+        getWhichPhase = document.querySelector('.phase-one')
+        getWhichPhase.scrollIntoView({behavior:"smooth"})
+        getAdventureTitle.innerText = '[ The Axe ]'
+    }
+    else if (getAdventureTitle.innerText === '[ The Axe ]') {
+        getWhichPhase = document.querySelector('.phase-two')
+        getWhichPhase.scrollIntoView({behavior:"smooth"})
+        getAdventureTitle.innerText = '[ The First Clue ]'
+    }
+    else if (getAdventureTitle.innerText === '[ The First Clue ]') {
+        getWhichPhase = document.querySelector('.phase-three')
+        getWhichPhase.scrollIntoView({behavior:"smooth"})
+        getAdventureTitle.innerText = '[ Getting further ]'
+    }
+    else if (getAdventureTitle.innerText === '[ Getting further ]') {
+        getWhichPhase = document.querySelector('.phase-four')
+        getWhichPhase.scrollIntoView({behavior:"smooth"})
+        getAdventureTitle.innerText = '[ Almost there ]'
+    }
+    else {
+        observer.disconnect()
+    }
+}
     
 /** Updates the "found items:" interface
  * @param {string} newItem Item that player took from room

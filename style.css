@@ -25,7 +25,7 @@ body {
 }
 
 h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 h3 {
@@ -110,9 +110,10 @@ button {
 
     display: grid;
     grid-template-columns: .6fr .5rem 1.2fr .5rem .6fr;
-    grid-template-rows: 1fr .3fr .7fr .1fr;
+    grid-template-rows: .2fr 7.1fr .3fr .7fr .1fr;
     grid-row-gap: .5rem;
     grid-template-areas:
+    ". . title . inventory"
     ". . description . inventory"
     "commands . items . inventory"
     "commands . action . locations"
@@ -180,14 +181,42 @@ button {
     height: 90%;
 }
 
+.adventure-title {
+    grid-area: title;
+}
+
 .description {
     grid-area: description;
+    position: relative;
+
+    width: 100%;
+    height:100%;
+    max-height: 30rem;
+    overflow: hidden;
     text-align: center;
     text-shadow: .3rem .3rem .3rem black;
 }
 
+.room-description {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: -17px;
+
+    overflow-y: auto;
+}
+
+.room-description > div:not(:last-child) {
+    margin-bottom: 20rem;
+}
+
+.room-description > div:last-child {
+    margin-bottom: 1rem;
+}
+
 .room-description p {
-    width: 100%;
+
     text-align: start;
     font-size: 1.2rem;
 
