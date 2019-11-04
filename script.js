@@ -21,7 +21,7 @@ const   inputButton = document.querySelector('button'),
                 lookDescription: "Maybe this could help me get out, or maybe even into that chest?",
                 canBeTake: true,
                 inventoryDesc: "Well weighted, ready to strike",
-                inventoryImg: "url('res/axe.svg')"
+                inventoryImg: "url('./res/axe.svg')"
             },
             heater: {
                 lookDescription: "If this was on it might've been a little warmer in here...",
@@ -66,7 +66,7 @@ const   inputButton = document.querySelector('button'),
                 inventoryDesc: "There's an incription here, 'Ali'. I wonder who she is...",
                 canBeChop: false,
                 canBeChopReason: "Maybe I should try something else here...",
-                inventoryImg: "url('res/painting.svg')"
+                inventoryImg: "url('./res/painting.svg')"
             },
             piano: {
                 lookDescription: "I can play music when I'm out of this mess",
@@ -101,7 +101,7 @@ const   inputButton = document.querySelector('button'),
                 inventoryDesc: "There's a single letter on the paper, 'V'",
                 canBeChop: false,
                 canBeChopReason: "It feels like I should be trying something else",
-                inventoryImg: "url('res/paper.svg')"
+                inventoryImg: "url('./res/paper.svg')"
             },
             
         },
@@ -119,7 +119,7 @@ const   inputButton = document.querySelector('button'),
                 inventoryDesc: "There was a picture in here, with the inscription 'E'",
                 canBeChop: false,
                 canBeChopReason: "I wonder if I should chop it...? Maybe not",
-                inventoryImg: "url('res/picture.svg')"
+                inventoryImg: "url('./res/picture.svg')"
 
             },
             staircase: {
