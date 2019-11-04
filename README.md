@@ -9,7 +9,9 @@ Look at all the items and find all the clues you need in order to come out as a 
 
 **The game is meant to be played on a 1920x1080 resolution and isn't optimized for other resolutions, such as tablet or mobile.**
 
-The reason why is because the game is meant to be played with a keyboard and therefore the focus has been on optimizing the experience on a 1920x1080 resolution, which a large margin of laptops and desktops have access to.
+The reason why is because the game is meant to be played with a keyboard and therefore the focus has been on optimizing the experience on a 1920x1080 resolution, which a large margin of laptops and desktops have access to. Not many tablets and mobiles have access to keyboards.
+
+I will probably add better responsivity in the future when I have no time restraints.
 
 Sorry for the inconvenience!
 
