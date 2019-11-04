@@ -4,7 +4,7 @@ const   inputButton = document.querySelector('button'),
         listenPhaseTwo = document.querySelector('.livingroom'),
         listenPhaseThree = document.querySelector('.library'),
         listenPhaseFour = document.querySelector('.attic'),
-        listenPhaseFive = document.querySelector('.binder-desc h4'),
+        listenPhaseFive = document.querySelector('.picture-desc h4'),
         getActionNode = document.querySelector('.action'),
         getInventoryNode = document.querySelector('.inventory'),
         getLastPhaseGrid = document.querySelector('.last-phase-grid'),
@@ -61,7 +61,7 @@ const   inputButton = document.querySelector('button'),
                 canBeChop: false,
             },
             painting: {
-                lookDescription: "Of an old woman. She looks... happy? Does she want me to come closer?",
+                lookDescription: "Of an old woman. She looks... happy? And what is that inscription?",
                 canBeTake: true,
                 inventoryDesc: "There's an incription here, 'Ali'. I wonder who she is...",
                 canBeChop: false,
@@ -97,30 +97,37 @@ const   inputButton = document.querySelector('button'),
             },
             typewriter: {
                 lookDescription: "Someone's been writing something here, a paper is stuck in the mechanism",
-                canBeTake: true,
-                inventoryDesc: "There's a single letter on the paper, 'V'",
+                canBeTake: false,
+                canBeTakeReason: "Maybe I should try something else...",
                 canBeChop: false,
                 canBeChopReason: "It feels like I should be trying something else",
-                inventoryImg: "url('./res/paper.svg')"
+                contains: "paper",
+                dropDescription: "This paper catches my eye..."
+            },
+            paper: {
+                lookDescription: "There's a single letter printed on the paper, how odd...",
+                canBeTake: true,
+                canBeChop: false,
+                inventoryDesc: "There's a single letter printed on the paper, 'V'",
+                inventoryImg: "url('./res/paper.svg')",
             },
             
         },
         attic = {
-            items: ['boxes', 'binder', 'staircase', 'window'],
+            items: ['boxes', 'figure', 'staircase', 'window'],
             boxes: {
                 lookDescription: "Boxes. Just boxes everywhere. Dusty old boxes",
                 canBeTake: false,
+                canBeTakeReason: "They're far too heavy",
                 canBeChop: true,
-                canBeChopReason: "Doesn't look like there's anything here. And now the air is filled with dust..."
+                contains: "binder",
+                canBeChopReason: "An binder fell out! ...and a lot of dust"
             },
-            binder: {
-                lookDescription: "There's a binder here, but it's not dusty like everything else",
-                canBeTake: true,
-                inventoryDesc: "There was a picture in here, with the inscription 'E'",
-                canBeChop: false,
-                canBeChopReason: "I wonder if I should chop it...? Maybe not",
-                inventoryImg: "url('./res/picture.svg')"
-
+            figure: {
+                lookDescription: "Is that... is that a person?",
+                canBeTake: false,
+                canBeChop: true,
+                canBeChopReason: "Oh, just a clothes rack with an old jacket hanging on it. How silly."
             },
             staircase: {
                 lookDescription: "Where I just came from. If it wasn't as creaky as it is, I would leave happily",
@@ -133,11 +140,25 @@ const   inputButton = document.querySelector('button'),
                 canBeTake: false,
                 canBeChop: false,
                 canBeChopReason: "Looks pretty beat up as is..."
+            },   
+            binder: {
+                lookDescription: "There's a single picture in this binder",
+                canBeTake: false,
+                canBeChop: false,
+                canBeChopReason: "I wonder if I should chop it...? Maybe not",
+                contains: "picture",
+                dropDescription: "This picture is interesting",
             },
-
+            picture: {
+                lookDescription: "The picture is just black, but there's an inscription here",
+                canBeTake: true,
+                canBeChop: false,
+                inventoryDesc: "The picture has the inscription 'E'",
+                inventoryImg: "url('./res/picture.svg')"               
+            }
         },
         player = {
-            location: [ basement],
+            location: [basement],
             acceptedLocations: [],
             inventory: []
         };

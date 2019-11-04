@@ -10,6 +10,7 @@ function parseUserInput(e) {
             checkFirstFourLetters = noSpaceString.substring(0, 4),
             checkStringEnding = noSpaceString.substring(4);
             getInstructions = document.querySelector('.instructions-grid')
+            shouldBuildInventory = false
 
         if (getLastPhaseGrid.style.display === 'grid') {
             if (noSpaceString === 'alive') {
@@ -52,14 +53,31 @@ function parseUserInput(e) {
                     if (checkIfItem) {
                         const selectedItem = currentLocation[checkStringEnding]
                         if (checkFirstFourLetters === 'look') {
-                            if ((checkStringEnding === 'chest') && (player.inventory.length === 4)) {
-                                if (getLastPhaseGrid.style.display === 'grid') {
-                                    userActionInput += " - You're almost there"
-                                }
-                                else {
+                            if (checkStringEnding === 'chest') {
+                                if (player.inventory.length === 4) {
                                     userActionInput += " - I think I have what I need to open this chest"
                                     activateLastPhase()
                                 }
+                                else {
+                                    userActionInput += ' - ' + selectedItem['lookDescription']
+                                }
+                            }
+                            else if ('contains' in selectedItem) {
+                                let shouldDropItem = currentLocation.items.includes(selectedItem['contains']),
+                                    itemInInventory = player.inventory.includes(selectedItem['contains'])
+                                
+                                if (shouldDropItem === false && itemInInventory === false) {
+                                    currentLocation.items.push(selectedItem['contains'])
+                                    userActionInput += ' - ' + selectedItem['lookDescription']
+                                    loadItems();
+                                }
+                                else if (itemInInventory === true) {
+                                    userActionInput += ' - I already did that'
+                                }
+                                else {
+                                    userActionInput += ' - ' + selectedItem['dropDescription']
+                                }
+                                
                             }
                             else {
                                 userActionInput += ' - ' + selectedItem['lookDescription']
@@ -78,8 +96,6 @@ function parseUserInput(e) {
                                 }
                             }
                             else {
-                                let shouldBuildInventory = false
-    
                                 if (checkFirstFourLetters === 'take') {
                                     userActionInput += ' - Took ' + checkStringEnding
                                     shouldBuildInventory = true
@@ -91,6 +107,10 @@ function parseUserInput(e) {
                                     if (checkStringEnding === 'door') {
                                         unlockNewLocations(checkStringEnding)
                                         
+                                    }
+                                    else if (checkStringEnding === 'boxes') {
+                                        currentLocation.items.push(selectedItem['contains'])
+                                        loadItems()
                                     }
                                     userActionInput += ' - Chopped ' + checkStringEnding + ' - ' + selectedItem['canBeChopReason']
                                 }
