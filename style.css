@@ -233,15 +233,26 @@ button {
 }
 
 .last-phase-animation {
-    animation: .8s ease-out .2s forwards chestanimation ;
+    animation: .8s ease-out .2s forwards chestanimation;
 }
 
 .last-phase h1 {
     margin: 4rem 0 1rem 0;
 }
 .last-phase p {
+    position: relative;
+    margin: 0 auto;
     text-align: center;
 }
+.last-phase p:last-child {
+    position: absolute;
+    top: 70%
+}
+
+.text-animation-fadein {
+    animation: 1s ease-out 1s forwards fadein;
+}
+
 .opening {
     position: absolute;
     top:40%;

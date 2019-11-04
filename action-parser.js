@@ -11,7 +11,7 @@ function parseUserInput(e) {
             checkStringEnding = noSpaceString.substring(4);
             getInstructions = document.querySelector('.instructions-grid')
 
-        if (getLastPhase.style.display === 'grid') {
+        if (getLastPhaseGrid.style.display === 'grid') {
             if (noSpaceString === 'alive') {
                 userActionInput = 'It clicked!'
                 activateEnding()
@@ -53,7 +53,7 @@ function parseUserInput(e) {
                         const selectedItem = currentLocation[checkStringEnding]
                         if (checkFirstFourLetters === 'look') {
                             if ((checkStringEnding === 'chest') && (player.inventory.length === 4)) {
-                                if (getLastPhase.style.display === 'grid') {
+                                if (getLastPhaseGrid.style.display === 'grid') {
                                     userActionInput += " - You're almost there"
                                 }
                                 else {

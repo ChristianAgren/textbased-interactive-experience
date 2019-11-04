@@ -7,7 +7,7 @@ const   inputButton = document.querySelector('button'),
         listenPhaseFive = document.querySelector('.binder-desc h4'),
         getActionNode = document.querySelector('.action'),
         getInventoryNode = document.querySelector('.inventory'),
-        getLastPhase = document.querySelector('.last-phase-grid'),
+        getLastPhaseGrid = document.querySelector('.last-phase-grid'),
         lastPhaseTitle = document.querySelector('.last-phase-grid h1'),
         lastPhaseBread = document.querySelector('.last-phase-grid p'),
         getChestBox = document.querySelector('.last-phase'),
@@ -373,9 +373,11 @@ function updateLocationGraphic(location) {
  * Builds last phase
  */
 function activateLastPhase() {
-    getLastPhase.style.display = 'grid'
+    getLastPhaseGrid.style.display = 'grid'
     lastPhaseTitle.innerText = '[ This is it! ]'
     lastPhaseBread.innerText = 'You have everything you need in order to open the chest and get the antidote'
+    
+    getChestBox.lastChild.previousSibling.innerHTML = 'The chest is locked with a combination lock. <br> The combination lock needs 5 letters in order to unlock. <br> <br> Type the combination in the input field in order to unlock the chest.'
     getActionNode.style.zIndex = '3'
     getInventoryNode.style.zIndex = '3'
 
@@ -388,7 +390,12 @@ function activateEnding() {
     getActionNode.style.zIndex = ''
     getInventoryNode.style.zIndex = ''
     lastPhaseTitle.innerText = '[ You did it! ]'
-    lastPhaseBread.innerText = 'You got the antidote!'
+    lastPhaseBread.innerText = ''
+    getChestBox.lastChild.previousSibling.classList.add('text-animation-fadein')
+    getChestBox.lastChild.previousSibling.style.top = '55%'
+    getChestBox.lastChild.previousSibling.style.opacity = '0'
+    getChestBox.lastChild.previousSibling.style.fontSize = '3rem'
+    getChestBox.lastChild.previousSibling.innerHTML = 'You got the antidote!'
     openChestEnding.className += ' opening-animation'
     getChestBox.className += ' last-phase-animation'
 }
