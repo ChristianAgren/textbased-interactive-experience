@@ -12,6 +12,7 @@
     --primary-color-alpha-less: rgba(17, 17, 18, 0.98);
     --primary-color-darker: rgb(3, 3, 3);
     --secondary-color: #eeeeee; 
+    --secondary-color-darker: #afafaf; 
 }
 
 
@@ -181,7 +182,7 @@ button {
 }
 
 .inv-desc h4, .inv-desc p {    
-    background-color: var(--primary-color-alpha);
+    background-color: var(--secondary-color-darker);
 }
 
 .inv-desc h4 {
@@ -252,7 +253,7 @@ button {
     background-color: var(--primary-color-darker);
 }
 .opening-animation {
-    animation: .8s ease-out .2s forwards openinganimation ;
+    animation: .8s ease-out .2s forwards openinganimation;
 }
 .lock {
     position: absolute;
@@ -306,7 +307,7 @@ button {
     text-align: start;
     font-size: 1.2rem;
 
-    animation: .8s ease-in .7s forwards slidein ;
+    animation: .8s ease-in .7s forwards slidein;
 }
 
 .item-container {
@@ -386,10 +387,15 @@ button {
     grid-area: commands;
 }
 
+.commands li:last-child {
+    background-color: var(--secondary-color-darker);
+}
+
 .locations {
     grid-area: locations;
     z-index: 2;
     position: relative;
+    background: var(--secondary-color-darker);
 }
 
 .locations ul li {

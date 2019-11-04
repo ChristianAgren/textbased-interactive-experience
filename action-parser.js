@@ -1,4 +1,5 @@
-/**Reads users action input and outputs accordingly
+/**
+ * Reads users action input and outputs accordingly
  * @param {EventListener} e Listens for keypress/buttonclick
  */
 function parseUserInput(e) {

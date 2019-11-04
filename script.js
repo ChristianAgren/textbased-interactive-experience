@@ -145,8 +145,9 @@ const   inputButton = document.querySelector('button'),
 let     getRoomItems = document.querySelectorAll('#room-item-list li'),
         currentLocation = player.location[0];
 
-/**Returns a capitilized string
- * @param {string} string A string that is to be capitilized
+/**
+ * Returns a capitilized string
+ * @param {String} string A string that is to be capitilized
  */ 
 function capitilizeFirstLetter(string) {
 
@@ -154,8 +155,9 @@ function capitilizeFirstLetter(string) {
     
  } 
 
-/**Returns a string without spaces
- * @param {string} string A string that needs spaces removed
+/**
+ * Returns a string without spaces
+ * @param {String} string A string that needs spaces removed
  */
 function removeSpaceFromString(string) {
 
@@ -163,8 +165,8 @@ function removeSpaceFromString(string) {
 
 }
 
-/** Scrolls page content when MutantObserver observes changes
- * 
+/** 
+ * Scrolls page content when MutantObserver observes changes
  */
 function listenToPhases() {
     let getWhichPhase
@@ -196,8 +198,9 @@ function listenToPhases() {
     }
 }
     
-/** Updates the "found items:" interface
- * @param {string} newItem Item that player took from room
+/** 
+ * Updates the "found items:" interface
+ * @param {String} newItem Item that player took from room
  */
 function updateFoundItemsInterface(newItem) {
 
@@ -218,19 +221,21 @@ function updateFoundItemsInterface(newItem) {
             
 }
 
-/** Places item in player inventory
- * @param {string} newItem Item that player took from room
+/** 
+ * Places item in player inventory
+ * @param {String} newItem Item that player took from room
  */
 function buildInventory(newItem) {
     player.inventory.push(newItem)  
     updateFoundItemsInterface(newItem)
 }
     
-/**Loads items into the interface when called
- * @param {number} itemNameIndex Index of item in array
- * @param {array} itemArray Item array of current location
- * @param {string} itemString String of inputed item
- * @param {boolean} shouldBuildInventory Checks if item should be placed in inventory
+/**
+ * Loads items into the interface when called
+ * @param {Number} itemNameIndex Index of item in array
+ * @param {Array} itemArray Item array of current location
+ * @param {String} itemString String of inputed item
+ * @param {Boolean} shouldBuildInventory Checks if item should be placed in inventory
  */
 function loadItems(itemNameIndex, itemArray, itemString, shouldBuildInventory) {
 
@@ -257,8 +262,9 @@ function loadItems(itemNameIndex, itemArray, itemString, shouldBuildInventory) {
 
 }
 
-/**Function for managing element lists
- * @param {string} assignedAction   User inputs assigned action. If undefined it updates the commands list
+/**
+ * Function for managing element lists
+ * @param {String} assignedAction   User inputs assigned action. If undefined it updates the commands list
  */
 function updateListElements(assignedAction) {
     let getElementsList,
@@ -284,15 +290,17 @@ function updateListElements(assignedAction) {
                                 'chop *item*',
                             ];
     }
+
     
     for (i = 0; i < getElementsList.length; i++) {
         getElementsList[i].innerText = buildElementsArray[i]
+        getElementsList[i].style.backgroundColor = 'white'
     }
 }
 
-/**Unlocks all rooms
- * 
- * @param {string} string string based off user's input
+/**
+ * Unlocks all rooms
+ * @param {String} string string based off user's input
  */
 function unlockNewLocations(string) {
     if (string === 'door') {
@@ -302,8 +310,9 @@ function unlockNewLocations(string) {
     }
 }
 
-/**Updates new location for logic
- * @param {string} location String based off user's input
+/**
+ * Updates new location for logic
+ * @param {String} location String based off user's input
  */
 function updateLocationLogic(location) {
     
@@ -324,15 +333,19 @@ function updateLocationLogic(location) {
 
 }
 
-/**Updates new location interface it based off input
- * @param {string} location String based off user's input
+/**
+ * Updates new location interface it based off input
+ * @param {String} location String based off user's input
  */
 function updateLocationGraphic(location) {
     if (location === 'door') {
         let updateAllLocations,
-            updateAllgraphics;
+            updateAllgraphics = document.querySelector('.locations');
+
+        updateAllgraphics.style.backgroundColor = 'var(--secondary-color)'
 
         location = 'basement'
+
         for (i=0; i<player.acceptedLocations.length;i++) {
             updateAllgraphics = document.querySelector('.'+player.acceptedLocations[i])
             updateAllLocations = player.acceptedLocations[i]
@@ -356,8 +369,8 @@ function updateLocationGraphic(location) {
     
 }
 
-/** Builds last phase
- * 
+/** 
+ * Builds last phase
  */
 function activateLastPhase() {
     getLastPhase.style.display = 'grid'
@@ -368,8 +381,8 @@ function activateLastPhase() {
 
 }
 
-/** Builds game ending
- * 
+/** 
+ * Builds game ending
  */
 function activateEnding() {
     getActionNode.style.zIndex = ''
