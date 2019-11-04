@@ -1,9 +1,4 @@
 
 todo:
 
-fråga david om:
-- att kommentera objekt
-	- css
-- att bryta upp .js 
-- om readme beskrivning
-	- responsivitet
+fråga d

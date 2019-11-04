@@ -1,6 +1,7 @@
 /**
  * Reads users action input and outputs accordingly
- * @param {Event} e Listens for keypress/buttonclick
+ * @param {KeyboardEvent} e Listens for keypress
+ * @param {ClickEvent} e Listens for click
  */
 function parseUserInput(e) {
     if (e.charCode === 13 || e.type === 'click') {
@@ -11,7 +12,7 @@ function parseUserInput(e) {
             checkStringEnding = noSpaceString.substring(4);
             getInstructions = document.querySelector('.instructions-grid')
             shouldBuildInventory = false
-
+            
         if (getLastPhaseGrid.style.display === 'grid') {
             if (noSpaceString === 'alive') {
                 userActionInput = 'It clicked!'
