@@ -1,6 +1,6 @@
 /**
  * Reads users action input and outputs accordingly
- * @param {EventListener} e Listens for keypress/buttonclick
+ * @param {Event} e Listens for keypress/buttonclick
  */
 function parseUserInput(e) {
     if (e.charCode === 13 || e.type === 'click') {
