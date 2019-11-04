@@ -1,6 +1,6 @@
-## textbased-interactive-experience
+# textbased-interactive-experience
 
-# Description:
+## Description:
 
 "You've been poisoned, you're objective is to find the antidote as soon as possible."
 
